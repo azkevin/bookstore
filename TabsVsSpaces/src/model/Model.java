@@ -7,11 +7,11 @@ import DAO.StudentDAO;
 import bean.EnrollmentBean;
 import bean.StudentBean;
 
-public class SIS {
+public class Model {
 	private StudentDAO studentDAO;
 	private EnrollmentDAO enrollmentDAO;
 	
-	public SIS() throws ClassNotFoundException {
+	public Model() throws ClassNotFoundException {
 		this.studentDAO = new StudentDAO();
 		this.enrollmentDAO = new EnrollmentDAO();
 	}

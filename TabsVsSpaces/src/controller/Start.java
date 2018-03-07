@@ -1,4 +1,4 @@
-package ctrl;
+package controller;
 
 import java.io.IOException;
 
@@ -8,15 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.SIS;
+import model.Model;
 
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", "/StartUp", "/Startup", "/Startup/*"})
+@WebServlet(urlPatterns = {"/Start"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private SIS sis;
+	private Model sis;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,7 +28,7 @@ public class Start extends HttpServlet {
     
     public void init() throws ServletException{
     	try {
-			this.sis = new SIS();
+			this.sis = new Model();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -40,7 +40,7 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
-		String target = "/Form.jspx";
+		String target = "/HomePage.jspx";
 		String name = request.getParameter("name");
 		String minimumCredits = request.getParameter("credit");
 		String report = request.getParameter("Report");
