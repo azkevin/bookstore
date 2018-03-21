@@ -3,7 +3,11 @@ html {
 }
 
 h2 {
-	font-family: Helvetica, Verdana, Arial;
+	font-family: Lato;
+}
+
+p {
+	font-family: Open Sans;
 }
 
 body {
@@ -12,6 +16,7 @@ body {
 
 /* Sub navigation bar */
 div.subnav {
+	font-family: Lato;
 	margin-bottom: 0px;
 	height: 33px;
 	background: #455A64;
@@ -43,7 +48,6 @@ div.subnav {
 }
 
 .subnav a:link, a:visited {
-	font-family: Verdana, Arial, Helvetica;
 	font-weight: bold;
 	color: #FFFFFF;
 	display: block;
@@ -66,6 +70,7 @@ div.subnav {
 
 /* Main navigation bar */
 .navigation {
+	font-family: Lato;
 	height: 70px;
 	background: #263238;
 }
@@ -85,6 +90,11 @@ div.subnav {
 	line-height: 70px;
 	text-transform: uppercase;
 	font-size: 1.4em;
+}
+
+.logo a, .logo a:visited {
+	color: #ffffff;
+	text-decoration: none;
 }
 
 .brand {
