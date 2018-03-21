@@ -46,10 +46,47 @@
 		</ul>
 	</div>
 
-	<article>
-		<h2>Book 1</h2>
-		<p>Price: $10</p>
-	</article>
+	<div class="columns">
+		<ul class="price">
+			<li class="header">Book 1</li>
+			<li class="grey">$10</li>
+			<li>Image</li>
+			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+				class="button">Review</a></li>
+		</ul>
+	</div>
+
+	<div class="columns">
+		<ul class="price">
+			<li class="header">Book 2</li>
+			<li class="grey">$10</li>
+			<li>Image</li>
+			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+				class="button">Review</a></li>
+		</ul>
+	</div>
+
+	<div class="columns">
+		<ul class="price">
+			<li class="header">Book 3</li>
+			<li class="grey">$10</li>
+			<li>Image</li>
+			<li class="grey">
+				<a href="#" class="button">Cart</a> 
+				<a href="#" class="button">Review</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="columns">
+		<ul class="price">
+			<li class="header">Book 4</li>
+			<li class="grey">$10</li>
+			<li>Image</li>
+			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+				class="button">Review</a></li>
+		</ul>
+	</div>
 
 </body>
 	</html>
