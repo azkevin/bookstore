@@ -8,41 +8,36 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-<html xmlns="http://www.w3.org/1999/xhtml">
+	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link rel="StyleSheet" href="res/mc.css" type="text/css" media="screen, print"/>
-	<title>Bookstore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="StyleSheet" href="res/mc.css" type="text/css"
+	media="screen, print" />
+<title>Bookstore</title>
 </head>
 <body>
 
 	<section class="navigation">
-	  <div class="nav-container">
-	    <div class="brand">
-	      <a href="#!">Logo</a>
-	    </div>
-	    <nav>
-	      <ul class="nav-list">
-	        <li>
-	          <a href="#!">Home</a>
-	        </li>
-	        <li>
-	          <a href="#!">About</a>
-	        </li>
-	        <li>
-	          <a href="#!">Login</a>
-	        </li>
-	        <li>
-	          <a href="#!">Cart</a>
-	        </li>
-	      </ul>
-	    </nav>
-	  </div>
+		<div class="nav-container">
+			<div class="logo">
+				<a href="${pageContext.request.contextPath}/"> <img width="139.5px" height="48.28px"
+					src="${pageContext.request.contextPath}/res/logo/TabsVsSpacesLogoWhiteBookstore.png"></img>
+				</a>
+			</div>
+			<nav>
+				<ul class="nav-list">
+					<li><a href="#!">Home</a></li>
+					<li><a href="#!">About</a></li>
+					<li><a href="#!">Login</a></li>
+					<li><a href="#!">Cart</a></li>
+				</ul>
+			</nav>
+		</div>
 	</section>
 
-    <div class="subnav">
-    	<ul>
-    		<li><a href="${pageContext.request.contextPath}/">All</a></li>
+	<div class="subnav">
+		<ul>
+			<li><a href="${pageContext.request.contextPath}/">All</a></li>
 			<li><a href="${pageContext.request.contextPath}/">Engineering</a></li>
 			<li><a href="${pageContext.request.contextPath}/">Fiction</a></li>
 			<li><a href="${pageContext.request.contextPath}/">History</a></li>
@@ -50,12 +45,12 @@
 			<li><a href="${pageContext.request.contextPath}/">Science</a></li>
 		</ul>
 	</div>
-	
+
 	<article>
-	  <h2>Book 1</h2>
-	  <p>Price: $10</p>
+		<h2>Book 1</h2>
+		<p>Price: $10</p>
 	</article>
 
 </body>
-</html>
+	</html>
 </jsp:root>
