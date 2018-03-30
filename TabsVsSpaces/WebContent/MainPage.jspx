@@ -17,21 +17,7 @@
 </head>
 <body>
 
-	<section class="navigation">			
-		<div class="logo">
-			<a href="${pageContext.request.contextPath}/"> <img width="139.5px" height="48.28px"
-				src="${pageContext.request.contextPath}/res/logo/TabsVsSpacesLogoWhiteBookstore.png"></img>
-			</a>
-		</div>
-		<nav>
-			<ul class="nav-list">
-				<li><a href="#!">Home</a></li>
-				<li><a href="#!">About</a></li>
-				<li><a href="#!">Login</a></li>
-				<li><a href="#!">Cart</a></li>
-			</ul>
-		</nav>
-	</section>
+	<jsp:include page="Header.jsp" />
 
 	<div class="subnav">
 		<ul>
@@ -44,6 +30,8 @@
 			<input type="text" placeholder="Search..."/>
 		</ul>
 	</div>
+
+	<h2 style="text-align: center">All Books</h2>
 
 	<div class="columns">
 		<ul class="price">
