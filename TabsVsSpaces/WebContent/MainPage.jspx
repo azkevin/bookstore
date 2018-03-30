@@ -43,6 +43,7 @@
 			<li><a href="${pageContext.request.contextPath}/">History</a></li>
 			<li><a href="${pageContext.request.contextPath}/">Romance</a></li>
 			<li><a href="${pageContext.request.contextPath}/">Science</a></li>
+			<input type="text" placeholder="Search..."/>
 		</ul>
 	</div>
 

@@ -68,6 +68,16 @@ div.subnav {
 	background-color: #90A4AE;
 }
 
+.subnav input[type=text] {
+	font-family: Open Sans;
+	padding: 0 10px;
+	float: left;
+	margin-left: 4%;
+	width: 20%;
+	font-size: 14px;
+	margin-top: 3px;
+}
+
 /* Main navigation bar */
 .navigation {
 	font-family: Lato;
