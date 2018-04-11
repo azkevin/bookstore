@@ -21,10 +21,10 @@
 		</div>
 		<nav>
 			<ul class="nav-list">
-				<li><a href="#!">Home</a></li>
-				<li><a href="#!">About</a></li>
-				<li><a href="#!">Login</a></li>
-				<li><a href="#!">Cart</a></li>
+				<li><a href="${pageContext.request.contextPath}/MainPage.jspx">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/AboutPage.jspx">About</a></li>
+				<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
+				<li><a href="${pageContext.request.contextPath}/CartPage.jspx">Cart</a></li>
 			</ul>
 		</nav>
 	</section>
