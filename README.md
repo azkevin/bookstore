@@ -23,7 +23,7 @@ url="jdbc:derby:XXX\TabsVsSpaces\TabsVsSpaces_DB;create=true"/>
 
 6. Start the server, and go to http://localhost:8080/TabsVsSpaces/ to confirm it is running.
 
-The data is populated from the [TabsVsSpaces.sql file](/TabsVsSpaces.sql). 
+The data is populated from the [TabsVsSpacesCreateTables.sql file](/TabsVsSpacesCreateTables.sql), and deleted from the [TabsVsSpacesDropTables.sql file](/TabsVsSpacesDropTables.sql)
 
 ## Credit
 
