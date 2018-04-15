@@ -15,7 +15,7 @@ A simple bookstore application built using Java EE, Apache Derby, and Apache Tom
 That is, 
 
 ```
-url="jdbc:derby:XXX\TabsVsSpaces\TabsVsSpaces_DB;create=true"/>
+url="jdbc:derby:XXX\TabsVsSpaces\WebContent\TabsVsSpaces_DB;create=true"/>
 
 ```
 
