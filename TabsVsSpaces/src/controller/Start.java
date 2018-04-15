@@ -41,7 +41,7 @@ public class Start extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
 		// String target = "/HomePage.jspx";
-		String target = "/MainPage.jspx";
+		String target = "/HomePage.jspx";
 		String name = request.getParameter("name");
 		String minimumCredits = request.getParameter("credit");
 		String report = request.getParameter("Report");
