@@ -40,8 +40,11 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
-		String target = "/MainPage.jspx?category=All";
+		
+		
+		String target = "MainPage.jspx";
 		String category = request.getParameter("category");
+		request.setAttribute("category", category); //Set attribute for header on main page
 		//<TODO> error checking on category
 		if(category != null && !category.equals("")){
 			try {
@@ -49,8 +52,11 @@ public class Start extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			request.getRequestDispatcher(target).forward(request, response);
+		} else { //Default category should be "All" on the landing page
+			String url = request.getRequestURL().append("?").append("category=All").toString();
+			response.sendRedirect(url);
 		}
-		request.getRequestDispatcher(target).forward(request, response);
 	}
 
 	/**

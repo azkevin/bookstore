@@ -32,7 +32,7 @@
 			</ul>
 		</div>
 	
-		<h2 style="text-align: center">All Books</h2>
+		<h2 style="text-align: center">${category} Books</h2>
 	
 		<c:if test="${not empty books }">
 			<table border="1">
@@ -41,6 +41,7 @@
 					<td><b>title</b></td>
 					<td><b>author</b></td>
 					<td><b>publisher</b></td>
+					<td><b>coverart</b></td>
 					<td><b>price</b></td>
 					<td><b>category</b></td>
 					<td><b>description</b></td>
@@ -51,55 +52,27 @@
 						<td>${item.title}</td>
 						<td>${item.author}</td>
 						<td>${item.publisher}</td>
+						<td>${item.coverart}</td>
 						<td>${item.price}</td>
 						<td>${item.category}</td>
 						<td>${item.description}</td>
 					</tr>
 				</c:forEach>
 			</table>
+			<c:forEach var="item" items="${books.values()}">
+				<div class="columns">
+					<ul class="price">
+						<li class="header">${item.title}</li>
+						<li class="grey">
+							<img src="${item.coverart}" width="150" height="200" style="padding:10px;"/>
+							<br/>
+							$${item.price}
+						</li>
+					<li><a href="#" class="button">Details</a></li>
+					</ul>
+				</div>
+			</c:forEach>
 		</c:if>
-			
-		<div class="columns">
-			<ul class="price">
-				<li class="header">Book 1</li>
-				<li class="grey">$10</li>
-				<li>Image</li>
-				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-					class="button">Review</a></li>
-			</ul>
-		</div>
-	
-		<div class="columns">
-			<ul class="price">
-				<li class="header">Book 2</li>
-				<li class="grey">$10</li>
-				<li>Image</li>
-				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-					class="button">Review</a></li>
-			</ul>
-		</div>
-	
-		<div class="columns">
-			<ul class="price">
-				<li class="header">Book 3</li>
-				<li class="grey">$10</li>
-				<li>Image</li>
-				<li class="grey">
-					<a href="#" class="button">Cart</a> 
-					<a href="#" class="button">Review</a>
-				</li>
-			</ul>
-		</div>
-		
-		<div class="columns">
-			<ul class="price">
-				<li class="header">Book 4</li>
-				<li class="grey">$10</li>
-				<li>Image</li>
-				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-					class="button">Review</a></li>
-			</ul>
-		</div>
 	</form>
 </body>
 	</html>
