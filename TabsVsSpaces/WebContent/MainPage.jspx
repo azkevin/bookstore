@@ -17,64 +17,90 @@
 </head>
 <body>
 
-	<jsp:include page="Header.jsp" />
-
-	<div class="subnav">
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/">All</a></li>
-			<li><a href="${pageContext.request.contextPath}/">Engineering</a></li>
-			<li><a href="${pageContext.request.contextPath}/">Fiction</a></li>
-			<li><a href="${pageContext.request.contextPath}/">History</a></li>
-			<li><a href="${pageContext.request.contextPath}/">Romance</a></li>
-			<li><a href="${pageContext.request.contextPath}/">Science</a></li>
-			<input type="text" placeholder="Search..."/>
-		</ul>
-	</div>
-
-	<h2 style="text-align: center">All Books</h2>
-
-	<div class="columns">
-		<ul class="price">
-			<li class="header">Book 1</li>
-			<li class="grey">$10</li>
-			<li>Image</li>
-			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-				class="button">Review</a></li>
-		</ul>
-	</div>
-
-	<div class="columns">
-		<ul class="price">
-			<li class="header">Book 2</li>
-			<li class="grey">$10</li>
-			<li>Image</li>
-			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-				class="button">Review</a></li>
-		</ul>
-	</div>
-
-	<div class="columns">
-		<ul class="price">
-			<li class="header">Book 3</li>
-			<li class="grey">$10</li>
-			<li>Image</li>
-			<li class="grey">
-				<a href="#" class="button">Cart</a> 
-				<a href="#" class="button">Review</a>
-			</li>
-		</ul>
-	</div>
+	<form action="" method="GET" onsubmit="return validate();">
+		<jsp:include page="Header.jsp" />
 	
-	<div class="columns">
-		<ul class="price">
-			<li class="header">Book 4</li>
-			<li class="grey">$10</li>
-			<li>Image</li>
-			<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
-				class="button">Review</a></li>
-		</ul>
-	</div>
-
+		<div class="subnav">
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/?category=All">All</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Engineering">Engineering</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Fiction">Fiction</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=History">History</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Romance">Romance</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Science">Science</a></li>
+				<input type="text" placeholder="Search..."/>
+			</ul>
+		</div>
+	
+		<h2 style="text-align: center">All Books</h2>
+	
+		<c:if test="${not empty books }">
+			<table border="1">
+				<tr>
+					<td><b>bid</b></td>
+					<td><b>title</b></td>
+					<td><b>author</b></td>
+					<td><b>publisher</b></td>
+					<td><b>price</b></td>
+					<td><b>category</b></td>
+					<td><b>description</b></td>
+				</tr>
+				<c:forEach var="item" items="${books.values()}">
+					<tr>
+						<td>${item.bid}</td>
+						<td>${item.title}</td>
+						<td>${item.author}</td>
+						<td>${item.publisher}</td>
+						<td>${item.price}</td>
+						<td>${item.category}</td>
+						<td>${item.description}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+			
+		<div class="columns">
+			<ul class="price">
+				<li class="header">Book 1</li>
+				<li class="grey">$10</li>
+				<li>Image</li>
+				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+					class="button">Review</a></li>
+			</ul>
+		</div>
+	
+		<div class="columns">
+			<ul class="price">
+				<li class="header">Book 2</li>
+				<li class="grey">$10</li>
+				<li>Image</li>
+				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+					class="button">Review</a></li>
+			</ul>
+		</div>
+	
+		<div class="columns">
+			<ul class="price">
+				<li class="header">Book 3</li>
+				<li class="grey">$10</li>
+				<li>Image</li>
+				<li class="grey">
+					<a href="#" class="button">Cart</a> 
+					<a href="#" class="button">Review</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="columns">
+			<ul class="price">
+				<li class="header">Book 4</li>
+				<li class="grey">$10</li>
+				<li>Image</li>
+				<li class="grey"><a href="#" class="button">Cart</a> <a href="#"
+					class="button">Review</a></li>
+			</ul>
+		</div>
+	</form>
 </body>
 	</html>
 </jsp:root>

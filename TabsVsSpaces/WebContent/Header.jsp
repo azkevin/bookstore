@@ -15,13 +15,13 @@
 <body>
 	<section class="navigation">			
 		<div class="logo">
-			<a href="${pageContext.request.contextPath}/"> <img width="139.5px" height="48.28px"
+			<a href="${pageContext.request.contextPath}/?category=All"> <img width="139.5px" height="48.28px"
 				src="${pageContext.request.contextPath}/res/logo/TabsVsSpacesLogoWhiteBookstore.png"></img>
 			</a>
 		</div>
 		<nav>
 			<ul class="nav-list">
-				<li><a href="${pageContext.request.contextPath}/MainPage.jspx">Home</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=All">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/AboutPage.jspx">About</a></li>
 				<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
 				<li><a href="${pageContext.request.contextPath}/CartPage.jspx">Cart</a></li>

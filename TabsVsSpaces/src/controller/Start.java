@@ -40,22 +40,17 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
-		// String target = "/HomePage.jspx";
-		String target = "/HomePage.jspx";
-		String name = request.getParameter("name");
-		String minimumCredits = request.getParameter("credit");
-		String report = request.getParameter("Report");
-		if(report != null && report.equals("Report")){
+		String target = "/MainPage.jspx";
+		String category = request.getParameter("category");
+		//<TODO> error checking on category
+		if(category != null && !category.equals("")){
 			try {
-				request.setAttribute("students", sis.retriveStudent(name, Integer.parseInt(minimumCredits)));
-				request.setAttribute("report_checked", "true");
+				request.setAttribute("books", sis.retrieveByCategory(category));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		//Set persistence
-		request.setAttribute("name", name);
-		request.setAttribute("credit", minimumCredits);
 		request.getRequestDispatcher(target).forward(request, response);
 	}
 
