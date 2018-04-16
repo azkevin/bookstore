@@ -35,30 +35,6 @@
 		<h2 style="text-align: center">${category} Books</h2>
 	
 		<c:if test="${not empty books }">
-			<table border="1">
-				<tr>
-					<td><b>bid</b></td>
-					<td><b>title</b></td>
-					<td><b>author</b></td>
-					<td><b>publisher</b></td>
-					<td><b>coverart</b></td>
-					<td><b>price</b></td>
-					<td><b>category</b></td>
-					<td><b>description</b></td>
-				</tr>
-				<c:forEach var="item" items="${books.values()}">
-					<tr>
-						<td>${item.bid}</td>
-						<td>${item.title}</td>
-						<td>${item.author}</td>
-						<td>${item.publisher}</td>
-						<td>${item.coverart}</td>
-						<td>${item.price}</td>
-						<td>${item.category}</td>
-						<td>${item.description}</td>
-					</tr>
-				</c:forEach>
-			</table>
 			<c:forEach var="item" items="${books.values()}">
 				<div class="columns">
 					<ul class="price">
