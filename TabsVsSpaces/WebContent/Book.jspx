@@ -19,22 +19,21 @@
 
 	<form action="" method="GET" onsubmit="return validate();">
 		<jsp:include page="Header.jsp" />
-	
-		<div class="subnav">
-			<ul>
-				<li><a href="${pageContext.request.contextPath}/?category=All">All</a></li>
-				<li><a href="${pageContext.request.contextPath}/?category=Engineering">Engineering</a></li>
-				<li><a href="${pageContext.request.contextPath}/?category=Fiction">Fiction</a></li>
-				<li><a href="${pageContext.request.contextPath}/?category=History">History</a></li>
-				<li><a href="${pageContext.request.contextPath}/?category=Romance">Romance</a></li>
-				<li><a href="${pageContext.request.contextPath}/?category=Science">Science</a></li>
-				<input type="text" placeholder="Search..."/>
-			</ul>
-		</div>
-	
-		<h2 style="text-align: center">${category} Books</h2>
-	
-		<c:if test="${not empty books }">
+		
+		<c:if test="${not empty book }">
+			<c:forEach var="bookItem" items="${book.values()}">
+				<c:forEach var="reviewItem" items="${review.values()}">
+					<img src="${bookItem.coverart}" width="280" height="400" style="padding:10px; float:left;"/>
+					<h2 style="text-align: center">${item.title}</h2>
+					<p style="text-align: center"><b>Author:</b> ${bookItem.author}</p>
+					<p style="text-align: center"><b>Category:</b> ${bookItem.category}</p>
+					<p style="text-align: center"><b>Publisher:</b> ${bookItem.publisher}</p>
+					<p style="text-align: center"><b>Rating:</b> ${reviewItem.rating}/5</p>
+					<p style="text-align: center"><strong><u>Price: $${bookItem.price}</u></strong></p>
+					<br/>
+					<p>${bookItem.description}</p>
+				</c:forEach>
+			</c:forEach>
 			<table border="1">
 				<tr>
 					<td><b>bid</b></td>
@@ -46,7 +45,7 @@
 					<td><b>category</b></td>
 					<td><b>description</b></td>
 				</tr>
-				<c:forEach var="item" items="${books.values()}">
+				<c:forEach var="item" items="${book.values()}">
 					<tr>
 						<td>${item.bid}</td>
 						<td>${item.title}</td>
@@ -58,21 +57,28 @@
 						<td>${item.description}</td>
 					</tr>
 				</c:forEach>
+				
 			</table>
-			<c:forEach var="item" items="${books.values()}">
-				<div class="columns">
-					<ul class="price">
-						<li class="header">${item.title}</li>
-						<li class="grey">
-							<img src="${item.coverart}" width="150" height="200" style="padding:10px;"/>
-							<br/>
-							$${item.price}
-						</li>
-					<li><a href="${pageContext.request.contextPath}/?book=${item.bid}" class="button">Details</a></li>
-					</ul>
-				</div>
-			</c:forEach>
+			<table border="1">
+				<tr>
+					<td><b>reviewid</b></td>
+					<td><b>bid</b></td>
+					<td><b>userid</b></td>
+					<td><b>rating</b></td>
+					<td><b>reviewdesc</b></td>
+				</tr>
+				<c:forEach var="item" items="${review.values()}">
+					<tr>
+						<td>${item.reviewid}</td>
+						<td>${item.bid}</td>
+						<td>${item.userid}</td>
+						<td>${item.rating}</td>
+						<td>${item.reviewdesc}</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</c:if>
+	
 	</form>
 </body>
 	</html>

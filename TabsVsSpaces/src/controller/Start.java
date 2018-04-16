@@ -41,19 +41,36 @@ public class Start extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
 		
-		
 		String target = "MainPage.jspx";
 		String category = request.getParameter("category");
+		String book = request.getParameter("book");
+		
 		request.setAttribute("category", category); //Set attribute for header on main page
-		//<TODO> error checking on category
+		
+		//<TODO> error checking on all control flow
+		// User selects a book category to browse
 		if(category != null && !category.equals("")){
 			try {
-				request.setAttribute("books", sis.retrieveByCategory(category));
+				request.setAttribute("books", sis.retrieveBookByCategory(category));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			request.getRequestDispatcher(target).forward(request, response);
-		} else { //Default category should be "All" on the landing page
+		} 
+		// User selects a book for more details
+		else if(book != null && !book.equals("")) {
+			target = "Book.jspx";
+			try {
+				request.setAttribute("book", sis.retrieveBookByBID(book));
+				request.setAttribute("review", sis.retrieveReviewByBID(book));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher(target).forward(request, response);
+		}
+		
+		//Default category should be "All" on the landing page
+		else {
 			String url = request.getRequestURL().append("?").append("category=All").toString();
 			response.sendRedirect(url);
 		}
