@@ -21,19 +21,38 @@
 		<jsp:include page="Header.jsp" />
 		
 		<c:if test="${not empty book }">
-			<c:forEach var="bookItem" items="${book.values()}">
-				<c:forEach var="reviewItem" items="${review.values()}">
-					<img src="${bookItem.coverart}" width="280" height="400" style="padding:10px; float:left;"/>
-					<h2 style="text-align: center">${item.title}</h2>
-					<p style="text-align: center"><b>Author:</b> ${bookItem.author}</p>
-					<p style="text-align: center"><b>Category:</b> ${bookItem.category}</p>
-					<p style="text-align: center"><b>Publisher:</b> ${bookItem.publisher}</p>
-					<p style="text-align: center"><b>Rating:</b> ${reviewItem.rating}/5</p>
-					<p style="text-align: center"><strong><u>Price: $${bookItem.price}</u></strong></p>
-					<br/>
-					<p>${bookItem.description}</p>
+			<table>
+				<c:forEach var="bookItem" items="${book.values()}">
+					<td>
+						<tr><img src="${bookItem.coverart}" width="280" height="400" style="padding:10px; float:left;"/></tr>
+						<tr><h2 style="text-align: center">${item.title}</h2></tr>
+						<tr><p style="text-align: center"><b>Author:</b> ${bookItem.author}</p></tr>
+						<tr><p style="text-align: center"><b>Category:</b> ${bookItem.category}</p></tr>
+						<tr><p style="text-align: center"><b>Publisher:</b> ${bookItem.publisher}</p></tr>
+						<tr><p style="text-align: center"><b>Average Rating:</b> ${reviewAvg}/5</p></tr>
+						<tr><p style="text-align: center"><strong><u>Price: $${bookItem.price}</u></strong></p></tr>
+						<br/>
+						<tr><p style="text-align: center">${bookItem.description}</p></tr>
+						<br/>
+						<tr>
+							<div align="center">
+								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button">Add to Cart</a>
+								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button">Add a Review</a>
+							</div>
+						</tr>
+					</td>
 				</c:forEach>
-			</c:forEach>
+			</table>
+			<br/><br/><br/><br/>
+			<table>
+				<tr><td><h2><b><u>Reviews</u></b></h2></td></tr>
+				<c:forEach var="reviewItem" items="${review.values()}">
+					<tr>
+						<td><h3><b>${reviewItem.rating}/5</b> by <br/> ${reviewItem.userid}</h3></td>
+						<td><p>${reviewItem.reviewdesc}</p></td>
+					</tr>
+				</c:forEach>
+			</table>
 			<table border="1">
 				<tr>
 					<td><b>bid</b></td>

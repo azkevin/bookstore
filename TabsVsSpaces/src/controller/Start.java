@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ReviewBean;
 import model.Model;
+import model.ReviewUtil;
 
 /**
  * Servlet implementation class Start
@@ -61,8 +64,10 @@ public class Start extends HttpServlet {
 		else if(book != null && !book.equals("")) {
 			target = "Book.jspx";
 			try {
+				Map<String, ReviewBean> bookReviews = sis.retrieveReviewByBID(book);
 				request.setAttribute("book", sis.retrieveBookByBID(book));
-				request.setAttribute("review", sis.retrieveReviewByBID(book));
+				request.setAttribute("review", bookReviews);
+				request.setAttribute("reviewAvg", ReviewUtil.calculateAvgBookRating(bookReviews));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
