@@ -40,7 +40,7 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
-		String target = "/MainPage.jspx";
+		String target = "/MainPage.jspx?category=All";
 		String category = request.getParameter("category");
 		//<TODO> error checking on category
 		if(category != null && !category.equals("")){
@@ -50,7 +50,6 @@ public class Start extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		//Set persistence
 		request.getRequestDispatcher(target).forward(request, response);
 	}
 
