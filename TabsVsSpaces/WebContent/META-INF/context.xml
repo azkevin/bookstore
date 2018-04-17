@@ -5,6 +5,6 @@
 <Resource name="jdbc/EECS" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
 type="javax.sql.DataSource"
 driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-url="jdbc:derby:C:\Users\Akshay Patel\Documents\Akshay\Workspaces\Workspace_5\EECS\4413\Project\Bookstore\TabsVsSpaces\WebContent\TabsVsSpaces_DB;create=true"/>
+url="jdbc:derby:C:\Users\Suhana\AppData\Roaming\SPB_Data\git\Bookstore\TabsVsSpaces\WebContent\TabsVsSpaces_DB;create=true"/>
 <ResourceLink global="jdbc/EECS" name="jdbc/EECS" type="javax.sql.DataSource" />
  </Context>
