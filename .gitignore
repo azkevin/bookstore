@@ -1,5 +1,8 @@
 #to avoid db url conflicts after a git pull
 context.xml
+.classpath
+.settings
+
 
 #db logs
-**/TabsVsSpaces_DB/log/
+**/TabsVsSpaces_DB/
