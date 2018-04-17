@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
 		pageEncoding="ISO-8859-1" session="false"/>
 	<jsp:output doctype-root-element="html"
@@ -17,13 +19,30 @@
 		<div class="logo">
 			<a href="${pageContext.request.contextPath}/?category=All"> <img width="139.5px" height="48.28px"
 				src="${pageContext.request.contextPath}/res/logo/TabsVsSpacesLogoWhiteBookstore.png"></img>
-			</a>
+			</a>	
 		</div>
+		
 		<nav>
 			<ul class="nav-list">
+				<li id="user_details">
+					<c:if test="${not empty username}">
+						Hello, ${username.getFirstName()}
+					</c:if>
+					<c:if test="${empty username}">
+						Welcome!
+					</c:if>
+				</li>
+			
 				<li><a href="${pageContext.request.contextPath}/?category=All">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/AboutPage.jspx">About</a></li>
-				<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
+				
+				<c:if test="${not empty username}">
+					<li><a href="${pageContext.request.contextPath}/LogoutPage.jspx">Logout</a></li>
+				</c:if>
+				<c:if test="${empty username}">
+					<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
+				</c:if>
+					
 				<li><a href="${pageContext.request.contextPath}/CartPage.jspx">Cart</a></li>
 			</ul>
 		</nav>

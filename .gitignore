@@ -2,4 +2,4 @@
 context.xml
 
 #db logs
-log
+**/TabsVsSpaces_DB/log/

@@ -295,3 +295,43 @@ article {
     text-decoration: none;
     font-size: 15px;
 }
+
+.login_column {
+    margin: auto;
+    width: 25%;
+    border: black solid 2px;
+}
+
+#user_details{
+	color: white;
+	padding-top: 26px; 
+	font-family: Arial;
+	font-weight: bold;
+}
+
+.input_table {
+	margin: auto;
+	border: black solid 1px;
+	padding: 7px;
+	font-family: Tahoma, Geneva, Verdana, sans-serif;
+	background: #EEEEEE;
+}
+.input_table:hover {
+    box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
+}
+
+.button2 {
+    background-color: rgb(51, 130, 194);
+    margin: 2px;
+    border: none;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.button2:hover {
+    background-color: rgb(14, 91, 119); /* Green */
+    color: white;
+}
