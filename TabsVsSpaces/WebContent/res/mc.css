@@ -311,8 +311,8 @@ article {
 
 .input_table {
 	margin: auto;
-	border: black solid 1px;
-	padding: 7px;
+	border: #000000 solid 1px;
+	padding: 10px;
 	font-family: Tahoma, Geneva, Verdana, sans-serif;
 	background: #EEEEEE;
 }
