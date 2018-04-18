@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.AddressBean;
 import bean.ReviewBean;
 import bean.UserBean;
 import model.Model;
@@ -18,11 +18,12 @@ import model.ReviewUtil;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", "/LoginPage", "/RegisterUserPage"})
+@WebServlet(urlPatterns = {"/Start", "/LoginPage", "/RegisterUserPage", "/VerifyOrderPage"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Model sis;
 	private UserBean currentUser;
+	private AddressBean currentUserAddress;
 	
 	//used for login
 	private static final String USERNAME = "username";
@@ -101,7 +102,7 @@ public class Start extends HttpServlet {
 		//If the login button is clicked
 		if(request.getParameter("login") != null)
 		{
-			currentUser = null;
+			//currentUser = null;
 			try {
 				currentUser = sis.retrieveUser(username, password);
 			} catch (Exception e1) {
@@ -109,10 +110,18 @@ public class Start extends HttpServlet {
 				e1.printStackTrace();
 			}
 			
+			try {
+				currentUserAddress = sis.getAddress(currentUser.getUserID());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if(currentUser != null)
 			{
 				//Login Successful. Load main page
 				request.getServletContext().setAttribute("username", currentUser);
+				request.getServletContext().setAttribute("userdetails", currentUserAddress);
 				String url = request.getRequestURL().append("?").append("category=All").toString();
 				response.sendRedirect(url);
 			}
@@ -129,9 +138,11 @@ public class Start extends HttpServlet {
 			//remove attribute from servlet context
 			//yet to implement error logging out case(not necessary though)
 			currentUser = null;
+			currentUserAddress = null;
 			username = "";
 			password = "";
 			request.getServletContext().removeAttribute("username");
+			request.getServletContext().removeAttribute("userdetails");
 			
 			if(request.getServletContext().getAttribute("username") == null)
 			{
@@ -155,10 +166,18 @@ public class Start extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			try {
+				currentUserAddress = sis.getAddress(currentUser.getUserID());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if(currentUser != null)
 			{
 				//Account Creation Successful. Load main page
 				request.getServletContext().setAttribute("username", currentUser);
+				request.getServletContext().setAttribute("userdetails", currentUserAddress);
 				String url = request.getRequestURL().append("?").append("category=All").toString();
 				response.sendRedirect(url);
 			}

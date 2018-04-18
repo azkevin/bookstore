@@ -2,10 +2,12 @@ package model;
 
 import java.util.Map;
 
+import DAO.AddressDAO;
 import DAO.BookDAO;
 import DAO.ReviewDAO;
 import DAO.LoginDAO;
 import DAO.RegisterDAO;
+import bean.AddressBean;
 import bean.BookBean;
 import bean.ReviewBean;
 import bean.UserBean;
@@ -15,12 +17,14 @@ public class Model {
 	private ReviewDAO reviewDAO;
 	private LoginDAO loginDAO;
 	private RegisterDAO registerDAO;
+	private AddressDAO addressDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
 		this.reviewDAO = new ReviewDAO();
 		this.loginDAO = new LoginDAO();
 		this.registerDAO = new RegisterDAO();
+		this.addressDAO = new AddressDAO();
 	}
 	
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {
@@ -45,6 +49,10 @@ public class Model {
 	public UserBean addNewUser(String username, String pwd, String email, String fName, String lName, String street, String province,
 			String country, String zip, String phoneNumber) throws Exception {
 		return registerDAO.addNewUser(username, pwd, email, fName, lName, street, province, country, zip, phoneNumber);
+	}
+	
+	public AddressBean getAddress(int userID) throws Exception{
+		return addressDAO.getAddress(userID);
 	}
 	
 }

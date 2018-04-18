@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=US-ASCII"
+		pageEncoding="ISO-8859-1" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="StyleSheet" href="res/mc.css" type="text/css"
+	media="screen, print" />
+
+<title>Bookstore</title>
+</head>
+<body>
+
+	<jsp:include page="Header.jsp" />
+
+	<h2 style="text-align: center">Verify your information</h2>
+	
+	<form action='${pageContext.request.contextPath}/Start' onsubmit="return acc_form_validate();" method='POST'>
+		<table class="input_table">
+					
+			<tr>
+				<td>Shipping Information</td>
+			</tr>
+			<tr>
+				<td><label for="name">Name: </label></td> 
+			</tr>
+			<tr>
+				<td> <input name="firstname" id="firstname" value="${username.getFirstName()}" type="string"/></td>
+				<td> <input name="lastname" id="lastname" value="${username.getLastName()}" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td><label for="address">Street Address: </label></td> 
+			</tr>
+			<tr>
+				<td> <input name="streetname" id="streetname" value="${userdetails.getStreet()}" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td>Province</td>
+				<td>Country</td>
+			</tr>
+			<tr>
+				<td> <input name="province" id="province" value="${userdetails.getProvince()}" type="string"/></td>
+				<td> <input name="country" id="country" value="${userdetails.getCountry()}" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td>ZIP</td>
+				<td>Phone</td>
+			</tr>
+			<tr>
+				<td> <input name="zip" id="zip" value="${userdetails.getZip()}" type="string"/></td>
+				<td> <input name="phone" id="phone" value="${userdetails.getPhone()}" type="string"/></td>
+			</tr>
+			
+			
+			<tr></tr>
+			
+			<tr>
+				<td>Billing Information</td>
+			</tr>
+			<tr>
+				<td><label for="card_type">Card Type </label></td> 
+			</tr>
+			<tr>
+				<td> 
+					<select id="card_type" name="card_type">
+					  <option value="visa">VISA</option>
+					  <option value="mastercard">MasterCard</option>
+					</select>		
+				</td>
+			</tr>
+			
+			<tr>
+				<td><label for="card_num">Card Number</label></td>
+				<td><label for="cvv">CVV</label></td> 
+				
+			</tr>
+			<tr>
+				<td> <input name="card_num" id="card_num" placeholder="10 digit #" type="string"/></td>
+				<td> <input name="cvv" id="cvv" placeholder="eg - 131" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td><label for="expiration">Expiration</label></td> 
+			</tr>
+			
+			<tr>
+				<td> 
+					<select id="month" name="month">
+					  <option value="jan">January</option>
+					  <option value="feb">February</option>
+					  <option value="mar">March</option>
+					  <option value="apr">April</option>
+					  <option value="may">May</option>
+					  <option value="jun">June</option>
+					  <option value="jul">July</option>
+					  <option value="aug">August</option>
+					  <option value="sep">September</option>
+					  <option value="oct">October</option>
+					  <option value="nov">November</option>
+					  <option value="dec">December</option>
+					</select>		
+				</td>
+				<td> 
+					<input name="year" id="year" placeholder="Year" type="string"/>
+				</td>
+			</tr>
+			
+			<tr> 
+				<td>
+				<button class="button2" type="submit" name="confirm" value="submit">Confirm</button>
+				</td>
+			</tr>
+		
+		</table>
+		
+		<c:if test="${not empty error}">
+			<p>${error}</p>
+		</c:if>
+	</form>
+
+
+</body>
+	</html>
+</jsp:root>
