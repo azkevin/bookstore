@@ -5,15 +5,19 @@ public class UserBean {
 	private int userID;
 	private String userName;
 	private String password;
+	private String email;
 	private String firstName;
 	private String lastName;
+	private String type;
 	
-	public UserBean(int userID, String userName, String password, String firstName, String lastName) {
+	public UserBean(int userID, String userName, String password, String email, String firstName, String lastName, String type) {
 		this.userID = userID;
 		this.userName = userName;
 		this.password = password;
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.type = type;
 	}
 
 	public int getUserID() {
@@ -40,6 +44,14 @@ public class UserBean {
 		this.password = password;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 	public String getFirstName() {
 		return firstName;
 	}
@@ -54,5 +66,13 @@ public class UserBean {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

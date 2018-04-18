@@ -29,3 +29,88 @@ function handler(request){
         request.send();
     }
 } 
+
+function acc_form_validate() {
+    var ok = true;
+    //var objArr = [];
+    console.log("ac");
+    
+    try {
+        var email = document.getElementById("email").value;
+        var acc_pass = document.getElementById("acc_password").value;
+        var acc_c_pass = document.getElementById("acc_c_password").value;
+        var firstname = document.getElementById("firstname").value;
+        var lastname = document.getElementById("lastname").value;
+        var streetname = document.getElementById("streetname").value;
+        var province_regex = "^[A-Z]{2}";
+        var province = document.getElementById("province").value;
+        var country = document.getElementById("country").value;
+        var zip = document.getElementById("zip").value;
+        var phone_regex = "^[0-9]{3}-[0-9]{3}-[0-9]{4}";
+        var phone = document.getElementById("phone").value;
+        var card_regex = "^[0-9]{10}";
+        var card_num = document.getElementById("card_num").value;
+        var card_type = document.getElementById("card_type").value;
+        var month = document.getElementById("month").value;
+        var year_regex = "^[2-9][0-9]{3}";
+        var year = document.getElementById("year").value;
+    }
+    catch(e) {
+    	if(e instanceof TypeError)
+    	{
+    		console.log(e);
+    		console.log("Here");
+    		ok = false;
+            alert("One or more field(s) are entered incorrectly!");
+    	}   
+    }
+
+    if(email.indexOf('@') == -1)
+    {
+        alert("Invalid email address");
+        ok = false;
+    }
+
+    if(acc_pass !== acc_c_pass)
+    {
+        alert("Passwords don't match!");
+        ok = false;
+    }
+
+    if(acc_pass.length < 8)
+    {
+        alert("Password must be atleast 8 chars long");
+        ok = false;
+    }
+
+    if(province.match(province_regex) == null)
+    {
+        alert("Invalid province! Eg - ON");
+        ok = false;
+    }
+    
+    if(phone.match(phone_regex) == null)
+    {
+        alert("Invalid phone number! Eg - 416-756-9987");
+        ok = false;
+    }
+
+    if(card_num.match(card_regex) == null)
+    {
+        alert("Invalid credit card number! Eg - Enter 10 valid digits");
+        ok = false;
+    }
+
+    if(year.match(year_regex) == null)
+    {
+        alert("Invalid expiration year! Eg - 2020");
+        ok = false;
+    }
+    // if(!cvv.match(cvv_regex))
+    // {
+    //     alert("Invalid CVV! Enter valid 3");
+    //     ok = false;
+    // }
+
+    return ok;
+}

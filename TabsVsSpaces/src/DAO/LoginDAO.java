@@ -35,7 +35,7 @@ public class LoginDAO {
 
 		while (r.next()) {
 			currentUser = new UserBean(Integer.parseInt(r.getString("USERID")),r.getString("USERNAME"), 
-					r.getString("PASSWORD"), r.getString("FIRSTNAME"), r.getString("LASTNAME"));
+					r.getString("PASSWORD"), r.getString("EMAIL"), r.getString("FIRSTNAME"), r.getString("LASTNAME"), r.getString("TYPE"));
 		}
 
 		r.close();
@@ -55,7 +55,7 @@ public class LoginDAO {
 
 		while (r.next()) {
 			currentUser = new UserBean(Integer.parseInt(r.getString("USERID")),r.getString("USERNAME"), 
-					r.getString("PASSWORD"), r.getString("FIRSTNAME"), r.getString("LASTNAME"));
+					r.getString("PASSWORD"), r.getString("EMAIL"), r.getString("FIRSTNAME"), r.getString("LASTNAME"), r.getString("TYPE"));
 		}
 
 		r.close();
@@ -75,7 +75,7 @@ public class LoginDAO {
 
 		while (r.next()) {
 			currentUser = new UserBean(Integer.parseInt(r.getString("USERID")),r.getString("USERNAME"), 
-					r.getString("PASSWORD"), r.getString("FIRSTNAME"), r.getString("LASTNAME"));
+					r.getString("PASSWORD"), r.getString("EMAIL"), r.getString("FIRSTNAME"), r.getString("LASTNAME"), r.getString("TYPE"));
 		}
 
 		r.close();

@@ -18,7 +18,7 @@
 
 	<h2 style="text-align: center">Create Account</h2>
 	
-	<form action='${pageContext.request.contextPath}/Start' method='POST'>
+	<form action='${pageContext.request.contextPath}/Start' onsubmit="return acc_form_validate();" method='POST'>
 		<table class="input_table">
 			<tr>
 				<td> <label for="email" >Email: </label></td>
@@ -26,55 +26,65 @@
 			</tr>
 					
 			<tr>
-				<td> <label for="password" >Password: </label></td>
-				<td> <input name="password" placeholder="8 chars min." id="password" type="password"/> </td>
+				<td> <label for="acc_password" >Password: </label></td>
+				<td> <input name="acc_password" placeholder="8 chars min." id="acc_password" type="password"/> </td>
 			</tr>
 			
 			<tr>
-				<td> <label for="c_password" >Confirm Password: </label></td>
-				<td> <input name="c_password" id="c_password" type="password"/> </td>
+				<td> <label for="acc_c_password" >Confirm Password: </label></td>
+				<td> <input name="acc_c_password" id="acc_c_password" type="password"/> </td>
 			</tr>
 
+			<tr></tr>
+			
 			<tr>
-				<td cellpadding="2">Shipping Information</td>
+				<td>Shipping Information</td>
 			</tr>
 			<tr>
 				<td><label for="name">Name: </label></td> 
 			</tr>
 			<tr>
-				<td> <input name="name" id="firstname" placeholder="First Name" type="string"/></td>
-				<td> <input name="name" id="lastname" placeholder="Last Name" type="string"/></td>
+				<td> <input name="firstname" id="firstname" placeholder="First Name" type="string"/></td>
+				<td> <input name="lastname" id="lastname" placeholder="Last Name" type="string"/></td>
 			</tr>
 			
 			<tr>
 				<td><label for="address">Street Address: </label></td> 
 			</tr>
 			<tr>
-				<td> <input name="address" id="streetname" placeholder="Street Name" type="string"/></td>
-				<td> <input name="address" id="suitenum" placeholder="Apt #" type="string"/></td>
+				<td> <input name="streetname" id="streetname" placeholder="Street Name" type="string"/></td>
 			</tr>
 			
 			<tr>
-				<td cellpadding="2">State</td>
-				<td cellpadding="2">Country</td>
+				<td>Province</td>
+				<td>Country</td>
 			</tr>
 			<tr>
-				<td> <input name="state" id="state" placeholder="State" type="string"/></td>
-				<td> <input name="country" id="country" placeholder="Country" type="string"/></td>
+				<td> <input name="province" id="province" placeholder="eg - ON" type="string"/></td>
+				<td> <input name="country" id="country" value="Canada" placeholder="eg - Canada" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td>ZIP</td>
+				<td>Phone</td>
+			</tr>
+			<tr>
+				<td> <input name="zip" id="zip" placeholder="eg - L6Y 7H8" type="string"/></td>
+				<td> <input name="phone" id="phone" placeholder="eg - 416-878-2334" type="string"/></td>
 			</tr>
 			
 			
-			
+			<tr></tr>
 			
 			<tr>
-				<td cellpadding="2">Billing Information</td>
+				<td>Billing Information</td>
 			</tr>
 			<tr>
-				<td><label for="name">Card Type </label></td> 
+				<td><label for="card_type">Card Type </label></td> 
 			</tr>
 			<tr>
 				<td> 
-					<select>
+					<select id="card_type" name="card_type">
 					  <option value="visa">VISA</option>
 					  <option value="mastercard">MasterCard</option>
 					</select>		
@@ -84,43 +94,42 @@
 			<tr>
 				<td><label for="card_num">Card Number</label></td>
 				<td><label for="cvv">CVV</label></td> 
-				<td><label for="expiration">Expiration</label></td> 
+				
 			</tr>
 			<tr>
 				<td> <input name="card_num" id="card_num" placeholder="10 digit #" type="string"/></td>
 				<td> <input name="cvv" id="cvv" placeholder="eg - 131" type="string"/></td>
+			</tr>
+			
+			<tr>
+				<td><label for="expiration">Expiration</label></td> 
+			</tr>
+			
+			<tr>
 				<td> 
-					<select>
-					  <option value="jan">01</option>
-					  <option value="feb">02</option>
-					  <option value="mar">03</option>
-					  <option value="apr">04</option>
-					  <option value="may">05</option>
-					  <option value="jun">06</option>
-					  <option value="jul">07</option>
-					  <option value="aug">08</option>
-					  <option value="sep">09</option>
-					  <option value="oct">10</option>
-					  <option value="nov">11</option>
-					  <option value="dec">12</option>
+					<select id="month" name="month">
+					  <option value="jan">January</option>
+					  <option value="feb">February</option>
+					  <option value="mar">March</option>
+					  <option value="apr">April</option>
+					  <option value="may">May</option>
+					  <option value="jun">June</option>
+					  <option value="jul">July</option>
+					  <option value="aug">August</option>
+					  <option value="sep">September</option>
+					  <option value="oct">October</option>
+					  <option value="nov">November</option>
+					  <option value="dec">December</option>
 					</select>		
 				</td>
 				<td> 
-					<select>
-					  <option value="2019">2019</option>
-					  <option value="2020">2020</option>
-					  <option value="2021">2021</option>
-					  <option value="2022">2022</option>
-					  <option value="2023">2023</option>
-					  <option value="2024">2024</option>
-					  
-					</select>		
+					<input name="year" id="year" placeholder="Year" type="string"/>
 				</td>
 			</tr>
 			
 			<tr> 
 				<td>
-				<button class="button2" type="submit" name="create_acc" value="submit">Submit</button>
+				<button class="button2" type="submit" name="register" value="submit">Submit</button>
 				</td>
 			</tr>
 		

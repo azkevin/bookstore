@@ -13,6 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="StyleSheet" href="res/mc.css" type="text/css"
 	media="screen, print" />
+<script type="text/javascript" src="res/mc.js">;</script>
 </head>
 <body>
 	<section class="navigation">			
