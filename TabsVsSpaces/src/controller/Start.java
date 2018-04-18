@@ -188,6 +188,14 @@ public class Start extends HttpServlet {
 			}
 		}
 		
+		else if(request.getParameter("confirm") != null) 
+		{
+			//place an order
+			
+			//<TODO> Code to submit an order, depends on how the shopping cart is defined
+			
+		}
+		
 		else if(category != null && !category.equals("")){
 			try {
 				request.setAttribute("books", sis.retrieveBookByCategory(category));

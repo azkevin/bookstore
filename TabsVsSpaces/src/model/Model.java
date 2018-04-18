@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import DAO.AddressDAO;
 import DAO.BookDAO;
 import DAO.ReviewDAO;
 import DAO.LoginDAO;
+import DAO.OrderDAO;
 import DAO.RegisterDAO;
 import bean.AddressBean;
 import bean.BookBean;
@@ -18,6 +20,7 @@ public class Model {
 	private LoginDAO loginDAO;
 	private RegisterDAO registerDAO;
 	private AddressDAO addressDAO;
+	private OrderDAO orderDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
@@ -25,6 +28,7 @@ public class Model {
 		this.loginDAO = new LoginDAO();
 		this.registerDAO = new RegisterDAO();
 		this.addressDAO = new AddressDAO();
+		this.orderDAO = new OrderDAO();
 	}
 	
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {
@@ -55,4 +59,8 @@ public class Model {
 		return addressDAO.getAddress(userID);
 	}
 	
+//	public String submitOrder(int uid, String status, ArrayList<CartBean> list) throws Exception{
+//		return orderDAO.submitOrder(uid, status, list);
+//	}
+//	
 }

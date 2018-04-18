@@ -21,6 +21,9 @@
 
 	<h2 style="text-align: center">Cart</h2>
 
+	<!-- Comment from Akshay
+	Add a button called "Place Your Order" or something like that which will take the current user to VerifyOrderPage which has "Confirm" button
+	-->
 </body>
 	</html>
 </jsp:root>
