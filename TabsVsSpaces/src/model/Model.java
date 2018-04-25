@@ -6,12 +6,14 @@ import java.util.Map;
 import DAO.AddressDAO;
 import DAO.BookDAO;
 import DAO.ReviewDAO;
+import DAO.SoldDAO;
 import DAO.LoginDAO;
 import DAO.OrderDAO;
 import DAO.RegisterDAO;
 import bean.AddressBean;
 import bean.BookBean;
 import bean.ReviewBean;
+import bean.SoldBean;
 import bean.UserBean;
 
 public class Model {
@@ -21,6 +23,7 @@ public class Model {
 	private RegisterDAO registerDAO;
 	private AddressDAO addressDAO;
 	private OrderDAO orderDAO;
+	private SoldDAO soldDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
@@ -29,6 +32,7 @@ public class Model {
 		this.registerDAO = new RegisterDAO();
 		this.addressDAO = new AddressDAO();
 		this.orderDAO = new OrderDAO();
+		this.soldDAO = new SoldDAO();
 	}
 	
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {
@@ -57,6 +61,10 @@ public class Model {
 	
 	public AddressBean getAddress(int userID) throws Exception{
 		return addressDAO.getAddress(userID);
+	}
+	
+	public Map<String, SoldBean> retrieveBooksSold() throws Exception {
+		return this.soldDAO.retrieveAllBooksSold();
 	}
 	
 //	public String submitOrder(int uid, String status, ArrayList<CartBean> list) throws Exception{

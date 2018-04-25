@@ -2,7 +2,7 @@
 context.xml
 .classpath
 .settings
-
+*.class
 
 #db logs
 **/TabsVsSpaces_DB/

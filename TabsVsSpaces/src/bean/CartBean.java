@@ -4,7 +4,6 @@
 * 
 */ 
 
-
 package bean;
 
 public class CartBean 
@@ -16,8 +15,6 @@ public class CartBean
 	private float price;
 	private int quantity;
 	
-	
-	
 	public CartBean(String bid, String title, String author, String coverart, float price, int quantity) 
 	{
 		this.bid = bid;
@@ -27,7 +24,6 @@ public class CartBean
 		this.price = price;
 		this.quantity = quantity;
 	}
-	
 	
 	public String getBid() {
 		return bid;

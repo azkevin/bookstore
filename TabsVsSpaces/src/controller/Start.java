@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.AddressBean;
+import bean.BookBean;
 import bean.ReviewBean;
+import bean.SoldBean;
 import bean.UserBean;
 import model.Model;
 import model.ReviewUtil;
@@ -24,6 +26,7 @@ public class Start extends HttpServlet {
 	private Model sis;
 	private UserBean currentUser;
 	private AddressBean currentUserAddress;
+	private Map<String, SoldBean> booksSold;
 	
 	//used for login
 	private static final String USERNAME = "username";
@@ -46,6 +49,9 @@ public class Start extends HttpServlet {
 	private static final String ACC_MONTH = "month";
 	private static final String ACC_YEAR = "year";
 	
+	//used for admin analytics
+	private static final String ADMIN_MONTH = "admin-month";
+	private static final String ADMIN_YEAR = "admin-year";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -122,8 +128,29 @@ public class Start extends HttpServlet {
 				//Login Successful. Load main page
 				request.getServletContext().setAttribute("username", currentUser);
 				request.getServletContext().setAttribute("userdetails", currentUserAddress);
-				String url = request.getRequestURL().append("?").append("category=All").toString();
-				response.sendRedirect(url);
+				
+				//if the current user is admin, take him to AdminPage
+				if(currentUser.getFirstName().equals("admin"))
+				{
+					try {
+						booksSold = sis.retrieveBooksSold();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					if(booksSold != null)
+					{
+						request.getServletContext().setAttribute("booksSold", booksSold);
+					}
+					
+					request.getRequestDispatcher("AdminPage.jspx").forward(request, response);
+				}
+				else 
+				{
+					String url = request.getRequestURL().append("?").append("category=All").toString();
+					response.sendRedirect(url);
+				}
 			}
 			else {
 				//Failed Login. Re-load loginPage
