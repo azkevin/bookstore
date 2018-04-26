@@ -35,10 +35,9 @@
 			</tr>
 			
 			<tr> 
-				<td>
+				<td colspan="2" align="right">
 				<button class="button2" type="submit" name="login" value="submit">Submit</button>
-				</td>
-				<td>
+				
 				<a href="${pageContext.request.contextPath}/RegisterUserPage.jspx" class="button2">Create Account</a>
 				</td>
 			</tr>

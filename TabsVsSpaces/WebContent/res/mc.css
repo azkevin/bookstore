@@ -3,11 +3,11 @@ html {
 }
 
 h2 {
-	font-family: Lato;
+	font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif; 
 }
 
 p {
-	font-family: Open Sans;
+	font-family: Arial, Calibri, Candara, Segoe, Segoe UI, Optima, sans-serif; 
 }
 
 body {
@@ -16,8 +16,9 @@ body {
 
 /* Sub navigation bar */
 div.subnav {
-	font-family: Lato;
+	font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif; 
 	margin-bottom: 0px;
+	padding-top: 3px;
 	height: 33px;
 	background: #455A64;
 	width: 100%;
@@ -69,7 +70,7 @@ div.subnav {
 }
 
 .subnav input[type=text] {
-	font-family: Open Sans;
+	font-family: Arial;
 	padding: 0 10px;
 	float: left;
 	margin-left: 4%;
@@ -80,7 +81,7 @@ div.subnav {
 
 /* Main navigation bar */
 .navigation {
-	font-family: Lato;
+	font-family: Calibri;
 	height: 70px;
 	background: #263238;
 }
@@ -309,13 +310,28 @@ article {
 	font-weight: bold;
 }
 
-.input_table {
+table {
 	margin: auto;
 	border: #000000 solid 1px;
+	border-collapse: collapse;
 	padding: 10px;
 	font-family: Tahoma, Geneva, Verdana, sans-serif;
 	background: #EEEEEE;
+	width: auto;
 }
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th{
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
 .input_table:hover {
     box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2);
 }

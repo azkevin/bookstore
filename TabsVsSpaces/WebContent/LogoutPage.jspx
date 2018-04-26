@@ -25,13 +25,13 @@
 	<form action='${pageContext.request.contextPath}/Start' id="input" method='POST'>
 		<table class="input_table">
 			<tr> 
-				<td>
+				<td align="center">
 					<label>Are you sure you want to logout?</label>
 				</td>
-				<td>
+			</tr>
+			<tr>
+				<td colspan="2">
 					<button class="button2" type="submit" name="logout" value="submit">Yes</button>
-				</td>
-				<td>
 					<button class="button2" type="submit" name="logout_no" value="submit">No</button>
 				</td>
 			</tr>

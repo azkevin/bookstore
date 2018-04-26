@@ -38,7 +38,7 @@
 			<tr></tr>
 			
 			<tr>
-				<td>Shipping Information</td>
+				<th colspan="2">Shipping Information</th>
 			</tr>
 			<tr>
 				<td><label for="name">Name: </label></td> 
@@ -77,7 +77,7 @@
 			<tr></tr>
 			
 			<tr>
-				<td>Billing Information</td>
+				<th colspan="2">Billing Information</th>
 			</tr>
 			<tr>
 				<td><label for="card_type">Card Type </label></td> 
