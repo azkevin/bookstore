@@ -11,11 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.AddressBean;
 import bean.BookBean;
+import bean.CartBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
 import model.Model;
 import model.ReviewUtil;
+import model.ShoppingCart;
 
 /**
  * Servlet implementation class Start
@@ -27,6 +29,7 @@ public class Start extends HttpServlet {
 	private UserBean currentUser;
 	private AddressBean currentUserAddress;
 	private Map<String, SoldBean> booksSold;
+	private ShoppingCart ch;
 	
 	//used for login
 	private static final String USERNAME = "username";
@@ -104,7 +107,27 @@ public class Start extends HttpServlet {
 		//<TODO> error checking on all control flow
 		// User selects a book category to browse
 		
-
+		//need to check if add to cart was pressed somehow (maybe via ajax?)
+		if (request.getParameter("cart") != null && request.getParameter("cart").equals("add"))
+		{
+			System.out.println(request.getParameter("book"));
+			String bid = request.getParameter("book");
+			try 
+			{
+			CartBean cb = ch.findById(bid);
+			ch.add(cb);
+			}
+			catch (Exception e) {}
+		}
+			
+		//need to check if cart wants to be viewed, perhaps by ajax. passes the cart
+		if (request.getParameter("cart") != null && request.getParameter("cart").equals("view"))
+		{
+			request.setAttribute("list", ch.getCart());
+			request.setAttribute("cart_price", ch.getTotal());
+			
+		}
+				
 		//If the login button is clicked
 		if(request.getParameter("login") != null)
 		{

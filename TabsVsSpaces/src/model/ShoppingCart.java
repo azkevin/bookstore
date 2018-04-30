@@ -8,8 +8,10 @@
 
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import bean.CartBean;
+import DAO.CartDAO;
 
 public class ShoppingCart 
 {
@@ -24,12 +26,28 @@ public class ShoppingCart
 	private float total;
 	
 	/**
+	 * A CartDao to search for a book by id
+	 */
+	private CartDAO searcher;
+	
+	/**
 	 * Create an empty shopping cart with 0 total cost
 	 */
 	public ShoppingCart()
 	{
 		cart = new ArrayList<CartBean>();
 		total = 0;
+	}
+	
+	/**
+	 * 
+	 * @param bid the id of the book being searched for
+	 * @return a CartBean holding the details of the book
+	 * @throws SQLException
+	 */
+	public CartBean findById(String bid) throws SQLException
+	{
+		return searcher.findById(bid);
 	}
 	
 	/**
@@ -148,6 +166,25 @@ public class ShoppingCart
 		this.removeAll(cb.getBid());
 		this.add(cb);
 	}
+	
+	/**
+	 * 
+	 * @return the total for the cart
+	 */
+	public float getTotal()
+	{
+		return total;
+	}
+	
+	/**
+	 * 
+	 * @return the cart
+	 */
+	public ArrayList<CartBean> getCart()
+	{
+		return cart;
+	}
+	
 	
 	/**
 	* Class invariant 1: Shopping cart total reflects sum of entry totals
