@@ -18,8 +18,24 @@
 <body>
 
 	<jsp:include page="Header.jsp" />
+	
+	<br/>
+	<img src="${pageContext.request.contextPath}/res/logo/TabsVsSpacesLogoBlack.png" style="display: block; margin-left: auto; margin-right: auto; width: 35%"></img>
+	<h2 style="text-align: center">What is this website?</h2>
 
-	<h2 style="text-align: center">About Us</h2>
+	<article style="text-align: center">The <b>Tabs vs Spaces</b>' Bookstore is the team's first project. This is an e-commerce website where you are able to purchase books. You have the ability to browse, search, purchase, and add reviews on any book in this bookstore. Although our collection is currently small, we are always trying to improve our website to someday be the biggest online bookstore in the world!</article>
+	
+	<h2 style="text-align: center">Who are we?</h2>
+	<article style="text-align: center"><b>Tabs vs Spaces</b> is a group of developers located at York University, studying under the Lassonde School of Engineering. Our team name originates from <a style="color:blue;" href="https://www.youtube.com/watch?v=SsoOG6ZeyUI">the notorious conflict between developers on how to indent your code.</a> Our current team is:</article>
+	<li style="text-align: center">Kevin Arindaeng</li>
+	<li style="text-align: center">Akshaykumar Patel</li>
+	<li style="text-align: center">Shagun Kazan</li>
+	
+	<article style="text-align: center"> This project was worked on in the beautiful Bergeron Center for Engineering Excellence! </article>
+	<img src="${pageContext.request.contextPath}/res/images/berg.jpg" style="display: block; margin-left: auto; margin-right: auto; width: 35%"></img>
+	
+	<h2 style="text-align: center">How was this website made?</h2>
+	<article style="text-align: center"> This website was made using the Java EE framework, with the front-end being developed in pure HTML, CSS, and JavaScript. Git was also used for source-control. You can view our project <a style="color:blue;" href="https://github.com/azkevin/Bookstore">here!</a> </article>
 
 </body>
 	</html>

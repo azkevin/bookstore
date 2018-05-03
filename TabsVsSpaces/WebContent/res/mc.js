@@ -1,4 +1,4 @@
-// UC M4: Search (text) for a book title in the store
+// UC M4: Search (text) for a book title in the store 
 function searchText() {
     var input, filter, bookDiv, columns, ele, i;
     input = document.getElementById('searchInput');
