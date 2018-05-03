@@ -36,7 +36,7 @@
 						<br/>
 						<tr>
 							<div align="center">
-								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid} name="add_cart" class="button">Add to Cart</a>
+								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button"  name="add_cart">Add to Cart</a>
 								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button">Add a Review</a>
 							</div>
 						</tr>
