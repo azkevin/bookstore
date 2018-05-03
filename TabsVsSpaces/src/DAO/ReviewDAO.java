@@ -28,14 +28,23 @@ public class ReviewDAO {
 	
 	public Map<String, ReviewBean> retrieveByBID(String bid) throws SQLException {
 		String query = "select * from review where bid like '" + bid + "'";
+		
 		Map<String, ReviewBean> rv = new HashMap<String, ReviewBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		while(r.next()){
+		while(r.next()) {
 			int reviewid = r.getInt("reviewid");
+			int userid = r.getInt("userid");
+			String username = "";
+			String usernameQuery = "select username from users where userid = " + userid;
+			PreparedStatement p2 = con.prepareStatement(usernameQuery);
+			ResultSet r2 = p2.executeQuery();
+			while(r2.next()) {
+				username = r2.getString("username");
+			}
 			ReviewBean bean = new ReviewBean(reviewid, r.getString("bid"), 
-					r.getInt("userid"), r.getInt("rating"), r.getString("reviewdesc"));
+					userid, username, r.getInt("rating"), r.getString("reviewdesc"));
 			rv.put(Integer.toString(reviewid), bean);
 		}
 		r.close();

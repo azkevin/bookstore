@@ -5,16 +5,18 @@ public class ReviewBean {
 	private int reviewid;
 	private String bid;
 	private int userid;
+	private String username;
 	private int rating;
 	private String reviewdesc;
 	
 	public ReviewBean() {}
 	
-	public ReviewBean(int reviewid, String bid, int userid, int rating, String reviewdesc) {
+	public ReviewBean(int reviewid, String bid, int userid, String username, int rating, String reviewdesc) {
 		super();
 		this.reviewid = reviewid;
 		this.bid = bid;
 		this.userid = userid;
+		this.username = username;
 		this.rating = rating;
 		this.reviewdesc = reviewdesc;
 	}
@@ -41,6 +43,14 @@ public class ReviewBean {
 
 	public void setUserid(int userid) {
 		this.userid = userid;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getRating() {

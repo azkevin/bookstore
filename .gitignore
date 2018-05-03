@@ -4,6 +4,7 @@ context.xml
 .settings
 *.class
 
-#db logs
+#db logs, bin, and build folders
 **/TabsVsSpaces_DB/
 **/TabsVsSpaces/bin
+**/TabsVsSpaces/build

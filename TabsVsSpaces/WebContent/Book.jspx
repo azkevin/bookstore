@@ -48,7 +48,7 @@
 				<tr><td><h2><b><u>Reviews</u></b></h2></td></tr>
 				<c:forEach var="reviewItem" items="${review.values()}">
 					<tr>
-						<td><h3><b>${reviewItem.rating}/5</b> by <br/> ${reviewItem.userid}</h3></td>
+						<td><h3><b>${reviewItem.rating}/5</b> by <br/> ${reviewItem.username}</h3></td>
 						<td><p>${reviewItem.reviewdesc}</p></td>
 					</tr>
 				</c:forEach>
