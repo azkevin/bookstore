@@ -26,7 +26,7 @@
 		<table class="input_table">
 					
 			<tr>
-				<td>Shipping Information</td>
+				<th colspan="2">Shipping Information</th>
 			</tr>
 			<tr>
 				<td><label for="name">Name: </label></td> 
@@ -65,7 +65,7 @@
 			<tr></tr>
 			
 			<tr>
-				<td>Billing Information</td>
+				<th colspan="2">Billing Information</th>
 			</tr>
 			<tr>
 				<td><label for="card_type">Card Type </label></td> 
@@ -116,8 +116,8 @@
 			</tr>
 			
 			<tr> 
-				<td>
-				<button class="button2" type="submit" name="confirm" value="submit">Confirm</button>
+				<td colspan="2">
+					<button class="button2" type="submit" name="confirm" value="submit">Confirm</button>
 				</td>
 			</tr>
 		

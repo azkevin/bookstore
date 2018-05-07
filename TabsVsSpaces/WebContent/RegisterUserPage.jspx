@@ -41,7 +41,8 @@
 				<th colspan="2">Shipping Information</th>
 			</tr>
 			<tr>
-				<td><label for="name">Name: </label></td> 
+				<td><label for="fname">First Name </label></td> 
+				<td><label for="lname">Last Name </label></td> 
 			</tr>
 			<tr>
 				<td> <input name="firstname" id="firstname" placeholder="First Name" type="string"/></td>
@@ -49,7 +50,7 @@
 			</tr>
 			
 			<tr>
-				<td><label for="address">Street Address: </label></td> 
+				<td><label for="address">Street Address</label></td> 
 			</tr>
 			<tr>
 				<td> <input name="streetname" id="streetname" placeholder="Street Name" type="string"/></td>
@@ -128,8 +129,8 @@
 			</tr>
 			
 			<tr> 
-				<td>
-				<button class="button2" type="submit" name="register" value="submit">Submit</button>
+				<td colspan="2">
+				<button class="button2" type="submit" name="register" value="submit" style="width: 100%">Submit</button>
 				</td>
 			</tr>
 		

@@ -35,10 +35,15 @@
 			</tr>
 			
 			<tr> 
-				<td colspan="2" align="right">
-				<button class="button2" type="submit" name="login" value="submit">Submit</button>
-				
-				<a href="${pageContext.request.contextPath}/RegisterUserPage.jspx" class="button2">Create Account</a>
+				<td colspan="2">
+					<button class="button2" type="submit" name="login" value="submit" style="width: 100%">Submit</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" style="padding: 20px">
+				<div style="text-align: center">
+					<a href="${pageContext.request.contextPath}/RegisterUserPage.jspx" class="button">Create Account</a>
+				</div>
 				</td>
 			</tr>
 		
