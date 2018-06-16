@@ -35,6 +35,7 @@ public class Model {
 		this.soldDAO = new SoldDAO();
 	}
 	
+	// Books
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {
 		if(category.equalsIgnoreCase("All")) {
 			return this.bookDAO.retrieveAll();
@@ -46,10 +47,16 @@ public class Model {
 		return this.bookDAO.retrieveByBID(bid);
 	}
 	
-	public Map<String, ReviewBean> retrieveReviewByBID(String bid) throws Exception {
+	// Reviews
+	public Map<Integer, ReviewBean> retrieveReviewByBID(String bid) throws Exception {
 		return this.reviewDAO.retrieveByBID(bid);
 	}
 	
+	public ReviewBean addNewReview(String bid, int userid, String username, int rating, String reviewdesc) throws Exception {
+		return this.reviewDAO.addNewReview(bid, userid, username, rating, reviewdesc);
+	}
+	
+	// Users
 	public UserBean retrieveUser(String username, String password) throws Exception {
 		return this.loginDAO.loginUser(username, password);
 	}

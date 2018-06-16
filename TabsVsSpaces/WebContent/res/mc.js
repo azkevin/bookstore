@@ -1,3 +1,13 @@
+// UC M3: Add a review for the book
+function validateReviewText() {
+	var ok = true;
+	if(document.getElementById("reviewText").value == '') {
+		alert("Please enter a review with 1-800 characters.");
+		ok = false;
+	}
+	return ok;
+}
+
 // UC M4: Search (text) for a book title in the store 
 function searchText() {
     var input, filter, bookDiv, columns, ele, i;

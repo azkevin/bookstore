@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,6 +58,11 @@ public class Start extends HttpServlet {
 	private static final String ADMIN_MONTH = "admin-month";
 	private static final String ADMIN_YEAR = "admin-year";
 	
+	//Used for reviews
+	private static final String REVIEW_BID = "reviewBookId";
+	private static final String REVIEW_TEXT = "reviewText";
+	private static final String REVIEW_RATING = "reviewRating";
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -80,10 +87,12 @@ public class Start extends HttpServlet {
 		response.setContentType("text/plain");
 		
 		String target = "MainPage.jspx";
+		
+		// Book Details pages
 		String category = request.getParameter("category");
 		String book = request.getParameter("book");
 		
-		//Don't understand the logic behind this, but it works!
+		// Login/Logout pages
 		String username = request.getParameter(USERNAME);
 		String password = request.getParameter(PASSWORD);
 		String email = request.getParameter(ACC_EMAIL);
@@ -101,6 +110,11 @@ public class Start extends HttpServlet {
 		String cvv = request.getParameter(ACC_CVV);
 		String month = request.getParameter(ACC_MONTH);
 		String year = request.getParameter(ACC_YEAR);
+		
+		//Review pages
+		String reviewBookId = request.getParameter(REVIEW_BID);
+		String reviewRating = request.getParameter(REVIEW_RATING);
+		String reviewText = request.getParameter(REVIEW_TEXT);
 		
 		request.setAttribute("category", category); //Set attribute for header on main page
 		
@@ -254,14 +268,40 @@ public class Start extends HttpServlet {
 			}
 			request.getRequestDispatcher(target).forward(request, response);
 		} 
+		// User has submitted a review
+		else if((reviewRating != null && reviewText != null && reviewBookId != null)
+				&& (!reviewRating.equals("") && !reviewText.equals("") && !reviewBookId.equals(""))) {
+			try {
+				// Add the review to db
+				this.sis.addNewReview(reviewBookId, 
+						this.currentUser.getUserID(), 
+						this.currentUser.getUserName(), 
+						Integer.parseInt(reviewRating), 
+						reviewText);
+				
+				// Redirect back to the book page
+				String url = request.getRequestURL().append("?").append("book=").append(reviewBookId).toString();
+				response.sendRedirect(url);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		// User selects a book for more details
 		else if(book != null && !book.equals("")) {
 			target = "Book.jspx";
 			try {
-				Map<String, ReviewBean> bookReviews = sis.retrieveReviewByBID(book);
+				// Show latest reviews first
+				Map<Integer, ReviewBean> bookReviews = new TreeMap<Integer, ReviewBean>(Collections.reverseOrder());
+				bookReviews.putAll(sis.retrieveReviewByBID(book));
 				request.setAttribute("book", sis.retrieveBookByBID(book));
 				request.setAttribute("review", bookReviews);
 				request.setAttribute("reviewAvg", ReviewUtil.calculateAvgBookRating(bookReviews));
+				
+				// If the user has signed in, then give them an option to add a review
+				if(!(this.currentUser == null)) {
+					request.setAttribute("reviewEligible", true);
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

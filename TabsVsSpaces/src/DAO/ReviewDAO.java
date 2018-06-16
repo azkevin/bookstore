@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import bean.ReviewBean;
 public class ReviewDAO {
 
 	DataSource ds;
+	ReviewBean review;
 
 	public ReviewDAO() throws ClassNotFoundException {
 		try {
@@ -26,10 +28,10 @@ public class ReviewDAO {
 	}
 
 	
-	public Map<String, ReviewBean> retrieveByBID(String bid) throws SQLException {
+	public Map<Integer, ReviewBean> retrieveByBID(String bid) throws SQLException {
 		String query = "select * from review where bid like '" + bid + "'";
 		
-		Map<String, ReviewBean> rv = new HashMap<String, ReviewBean>();
+		Map<Integer, ReviewBean> rv = new HashMap<Integer, ReviewBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
@@ -45,7 +47,7 @@ public class ReviewDAO {
 			}
 			ReviewBean bean = new ReviewBean(reviewid, r.getString("bid"), 
 					userid, username, r.getInt("rating"), r.getString("reviewdesc"));
-			rv.put(Integer.toString(reviewid), bean);
+			rv.put(reviewid, bean);
 		}
 		r.close();
 		p.close();
@@ -53,5 +55,37 @@ public class ReviewDAO {
 		
 		return rv;
 	}
+	
+	public ReviewBean addNewReview(String bid, int userid, String username, int rating, String reviewdesc) throws SQLException {
+		try {
+			Connection con = this.ds.getConnection();
+			Statement sta = con.createStatement();
+			
+			// get the number of rows from the result set
+			ResultSet r = sta.executeQuery("SELECT count(*) FROM review");
+			r.next();
+		    int rowCount = r.getInt(1);   
+		    r.close();
+		 
+		    rowCount++;
+		    
+		    String review_query = "INSERT INTO review " + "VALUES (" + rowCount + ", \'" 
+			    + bid + "\', " 
+			    + userid + ", " 
+			    + rating + ", \'" 
+			    + reviewdesc + "\')";
+		    // Update review table
+			
+		    sta.executeUpdate(review_query);
+		    review = new ReviewBean(rowCount, bid, userid, username, rating, reviewdesc);
 
+			sta.close();
+			con.close();
+
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return review;
+	}
 }

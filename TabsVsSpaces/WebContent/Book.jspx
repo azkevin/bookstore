@@ -13,37 +13,64 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="StyleSheet" href="res/mc.css" type="text/css"
 	media="screen, print" />
+<script type="text/javascript" src="res/mc.js">;</script>
 <title>Bookstore</title>
 </head>
 <body>
 
-	<form action="" method="GET" onsubmit="return validate();">
+	<form action='${pageContext.request.contextPath}/Start' method="POST" onsubmit="return validateReviewText();">
 		<jsp:include page="Header.jsp" />
 		
 		<c:if test="${not empty book }">
+			<c:forEach var="bookItem" items="${book.values()}">
+			<div align="center">
 			<table>
-				<c:forEach var="bookItem" items="${book.values()}">
-					<td>
-						<tr><img src="${bookItem.coverart}" width="280" height="400" style="padding:10px; float:left;"/></tr>
-						<tr><h2 style="text-align: center">${item.title}</h2></tr>
-						<tr><p style="text-align: center"><b>Author:</b> ${bookItem.author}</p></tr>
-						<tr><p style="text-align: center"><b>Category:</b> ${bookItem.category}</p></tr>
-						<tr><p style="text-align: center"><b>Publisher:</b> ${bookItem.publisher}</p></tr>
-						<tr><p style="text-align: center"><b>Average Rating:</b> ${reviewAvg}/5</p></tr>
-						<tr><p style="text-align: center"><strong><u>Price: $${bookItem.price}</u></strong></p></tr>
-						<br/>
-						<tr><p style="text-align: center">${bookItem.description}</p></tr>
-						<br/>
-						<tr>
-							<div align="center">
-								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button"  name="add_cart">Add to Cart</a>
-								<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button">Add a Review</a>
-							</div>
-						</tr>
-					</td>
-				</c:forEach>
+				<td>
+					<tr><img src="${bookItem.coverart}" width="280" height="400" style="padding:10px; float:left;"/></tr>
+					<tr><input type="hidden" id="reviewBookId" name="reviewBookId" value="${bookItem.bid}"/></tr>
+					<tr><p style="text-align: center"><b>Author:</b> ${bookItem.author}</p></tr>
+					<tr><p style="text-align: center"><b>Category:</b> ${bookItem.category}</p></tr>
+					<tr><p style="text-align: center"><b>Publisher:</b> ${bookItem.publisher}</p></tr>
+					<tr><p style="text-align: center"><b>Average Rating:</b> ${reviewAvg}/5</p></tr>
+					<tr><p style="text-align: center"><strong><u>Price: $${bookItem.price}</u></strong></p></tr>
+					<br/>
+					<tr><p style="text-align: center">${bookItem.description}</p></tr>
+					<br/>
+					<tr>
+						<div align="center">
+							<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button"  name="add_cart">Add to Cart</a>
+							<c:if test="${not reviewEligible}">
+								<a href="${pageContext.request.contextPath}/LoginPage.jspx" class="button">Add a Review</a>
+							</c:if>
+						</div>
+					</tr>
+				</td>
 			</table>
-			<br/><br/><br/><br/>
+			</div>
+			<br/><br/><br/><br/><br/>
+			<div align="left">
+			<c:if test="${reviewEligible}">
+				<br/>
+				<table style="float: left">
+					<tr><td><b>Please review this book below!</b> <br/></td></tr>
+				</table>
+				<br/><br/><br/>
+				<label for="rating">Rating: </label>
+				<select id="reviewRating" name="reviewRating">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				</select>
+				<br/><br/>
+				<textarea id="reviewText" name="reviewText" rows="4" cols="40" maxlength="800"><jsp:text /></textarea>
+				<br/><br/>
+				<button class="button2" type="submit" name="reviewSubmit" value="submit">Submit</button>
+				<br/><br/>
+			</c:if>
+			</div>
+			<div align="center">	
 			<table>
 				<tr><td><h2><b><u>Reviews</u></b></h2></td></tr>
 				<c:forEach var="reviewItem" items="${review.values()}">
@@ -53,6 +80,8 @@
 					</tr>
 				</c:forEach>
 			</table>
+			</div>
+			</c:forEach>
 		</c:if>
 	
 	</form>
