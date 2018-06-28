@@ -42,7 +42,7 @@
 					<ul class="price">
 						<li class="header">${item.title}</li>
 						<li class="grey">
-							<img src="${item.coverart}" width="150" height="200" style="padding:10px;"/>
+							<img src="${item.coverart}" width="150" height="200" style="padding:10px; display: block; margin-left: auto; margin-right: auto; max-width: 100%; max-height: 100%"/>
 							<br/>
 							$${item.price}
 						</li>

@@ -246,7 +246,7 @@ article {
 /* Create four columns of equal width */
 .columns {
     float: left;
-    width: 25%;
+    width: 20%;
     padding: 8px;
 }
 
@@ -269,7 +269,7 @@ article {
 .price .header {
     background-color: #111;
     color: white;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 /* List items */
