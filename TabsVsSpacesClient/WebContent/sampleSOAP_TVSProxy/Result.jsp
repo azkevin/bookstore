@@ -1,5 +1,7 @@
 <%@page contentType="text/html;charset=UTF-8"%>
 <% request.setCharacterEncoding("UTF-8"); %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("newLineChar", "\n"); %>
 <HTML>
 <HEAD>
 <TITLE>Result</TITLE>
@@ -75,6 +77,8 @@ if(getProductInfo13mtemp == null){
 <%
 }else{
         String tempResultreturnp14 = org.eclipse.jst.ws.util.JspUtils.markup(String.valueOf(getProductInfo13mtemp));
+        // Replace new line characters with <br>
+        tempResultreturnp14 = tempResultreturnp14.replaceAll("(\r\n|\n)", "<br />");
         %>
         <%= tempResultreturnp14 %>
         <%

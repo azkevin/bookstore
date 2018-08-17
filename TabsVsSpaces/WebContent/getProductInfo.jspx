@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=US-ASCII"
+		pageEncoding="ISO-8859-1" session="true" />
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+	<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="StyleSheet" href="res/mc.css" type="text/css"
+	media="screen, print" />
+<script type="text/javascript" src="res/mc.js">;</script>
+<title>Bookstore</title>
+</head>
+<body>
+
+	<form action='${pageContext.request.contextPath}/Start' method="POST" onsubmit="return validateReviewText();">
+		<jsp:include page="Header.jsp" />
+		<h2>Results: </h2>
+		<c:if test="${not empty getProductInfo }">
+			<p>${getProductInfo}</p>
+			<br/>
+			<a href="${pageContext.request.contextPath}/?category=All" class="button">Go Back</a>
+		</c:if>
+	
+	</form>
+</body>
+	</html>
+</jsp:root>

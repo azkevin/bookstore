@@ -20,6 +20,7 @@ import bean.UserBean;
 import model.Model;
 import model.ReviewUtil;
 import model.ShoppingCart;
+import webservices.SOAPUtils;
 
 /**
  * Servlet implementation class Start
@@ -91,6 +92,7 @@ public class Start extends HttpServlet {
 		// Book Details pages
 		String category = request.getParameter("category");
 		String book = request.getParameter("book");
+		String getProductInfo = request.getParameter("getProductInfo");
 		
 		// Login/Logout pages
 		String username = request.getParameter(USERNAME);
@@ -307,6 +309,13 @@ public class Start extends HttpServlet {
 			}
 			request.getRequestDispatcher(target).forward(request, response);
 		}		
+		// User uses SOAP service "getProductInfo(bid)"
+		else if(getProductInfo != null && !getProductInfo.equals("")) {
+			target = "getProductInfo.jspx";
+			SOAPUtils util = new SOAPUtils();
+			request.setAttribute("getProductInfo", util.getProductInfo(getProductInfo));
+			request.getRequestDispatcher(target).forward(request, response);
+		}
 		//Default category should be "All" on the landing page
 		else {
 			String url = request.getRequestURL().append("?").append("category=All").toString();

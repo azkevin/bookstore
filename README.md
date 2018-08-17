@@ -1,6 +1,6 @@
 # Bookstore
 
-A simple bookstore application built using Java EE, Apache Derby, and Apache Tomcat.
+A simple bookstore application built using Java EE, Apache Derby, Apache Tomcat, Apache Axis, and Jersey.
 
 ## Setup
 
@@ -32,8 +32,8 @@ The data is populated from the [TabsVsSpacesCreateTables.sql file](/TabsVsSpaces
 To access the SOAP Web Service, invoke an HTTP POST request at the following endpoint:
 - http://localhost:8080/TabsVsSpaces/services/SOAP_TVS
 
-If TabsVsSpacesClient is also running on the server, a test client can be accessed at the following link:
-- http://localhost:8080/TabsVsSpacesClient/sampleSOAP_TVSProxy/TestClient.jsp?endpoint=http://localhost:11230/TabsVsSpaces/services/SOAP_TVS
+If TabsVsSpaces_Test is also running on the server, a test client can be accessed at the following link:
+- http://localhost:8080/TabsVsSpaces_Test/sampleSOAP_TVSProxy/TestClient.jsp?endpoint=http://localhost:11230/TabsVsSpaces/services/SOAP_TVS
 
 ## Credit
 

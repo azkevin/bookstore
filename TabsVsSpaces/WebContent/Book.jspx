@@ -42,6 +42,7 @@
 							<c:if test="${not reviewEligible}">
 								<a href="${pageContext.request.contextPath}/LoginPage.jspx" class="button">Add a Review</a>
 							</c:if>
+							<a href="${pageContext.request.contextPath}/?getProductInfo=${bookItem.bid}" class="button"  name="getProductInfo">getProductInfo(${bookItem.bid})</a>
 						</div>
 					</tr>
 				</td>
