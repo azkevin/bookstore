@@ -1,3 +1,9 @@
+//Cart
+function cartCheckOut() {
+	alert("Successfully removed!");
+	return true;
+}
+
 // UC M3: Add a review for the book
 function validateReviewText() {
 	var ok = true;

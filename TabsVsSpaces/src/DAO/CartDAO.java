@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,4 +60,19 @@ public class CartDAO {
 		return rv;
 	}
 
+	public void removeCartItem(int cartid) throws SQLException {
+		try {
+			Connection con = this.ds.getConnection();
+			Statement sta = con.createStatement();
+			String removeQuery = "DELETE FROM cart WHERE cartid=" + cartid;
+			sta.executeUpdate(removeQuery);
+			sta.close();
+			con.close();
+
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
 }

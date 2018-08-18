@@ -34,32 +34,38 @@
 		</div>
 	
 		<h2 style="text-align: center">Your Shopping Cart</h2>
-		
-		<p style="text-align: center"><b>Item(s):</b> </p>
-		<p style="text-align: center"><b>Total Price:</b> </p>
-		<br/>
-		<div align="center">
-			<a href="${pageContext.request.contextPath}/?category=All" class="button">Checkout</a>
-		</div>
-		<br/> <br/>
-		<c:if test="${not empty cart }">
-			<div align="center">	
-			<table>
-				<tr><td><h2><b><u>Reviews</u></b></h2></td></tr>
-				<c:forEach var="item" items="${cart.values()}">
+
+		<c:choose>
+			<c:when test="${(not empty cart) and (not empty cartSize) and (not empty cartPrice)}">
+				<p style="text-align: center"><b>Item(s):</b> ${cartSize}</p>
+				<p style="text-align: center"><b>Total Price:</b> $${cartPrice}</p>
+				<br/>
+				<div align="center">
+				<a href="${pageContext.request.contextPath}/?category=All" class="button">Checkout</a>
+				<br/> <br/> <br/>
+				<table>
 					<tr>
-						<td><p>${item.coverart}</p></td>
-						<td><p>${item.title}</p></td>
-						<td><p>${item.price}</p></td>
-						<td><p>Remove?</p></td>
-						<td><p>${item.cartid}</p></td>
-						<td><p>${item.userid}</p></td>
-						<td><p>${item.bid}</p></td>
+						<td><b>Cover Art</b></td>
+						<td><b>Title</b></td>
+						<td><b>Price</b></td>
 					</tr>
-				</c:forEach>
-			</table>
-			</div>
-		</c:if>
+					<c:forEach var="item" items="${cart.values()}">
+						<tr>
+							<td><img src="${item.coverart}" width="100" height="150" style="padding:10px; float:left;"/></td>
+							<td><p>${item.title}</p></td>
+							<td><p>${item.price}</p></td>
+							<div align="center">
+								<td><a href="${pageContext.request.contextPath}/?cartRemove=${item.cartid}" class="button">Remove</a></td>
+							</div>
+						</tr>
+					</c:forEach>
+				</table>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<p style="text-align: center">The cart is empty. Please add books to the cart.</p>
+			</c:otherwise>
+		</c:choose>
 	</form>
 </body>
 	</html>

@@ -43,6 +43,9 @@ public class Model {
 	public Map<Integer, CartBean> retrieveCartByUserId(int a_userid) throws Exception {
 		return this.cartDAO.retrieveByUserId(a_userid);
 	}
+	public void removeCartByCartId(int a_cartid) throws Exception {
+		this.cartDAO.removeCartItem(a_cartid);
+	}
 	
 	// Books
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {

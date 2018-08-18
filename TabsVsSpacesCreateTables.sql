@@ -164,3 +164,7 @@ CREATE TABLE Cart (
 );
 
 INSERT INTO Cart (cartid, userid, bid) VALUES (1, 1, 'b001');
+INSERT INTO Cart (cartid, userid, bid) VALUES (2, 1, 'b002');
+INSERT INTO Cart (cartid, userid, bid) VALUES (3, 1, 'b003');
+INSERT INTO Cart (cartid, userid, bid) VALUES (4, 1, 'b004');
+INSERT INTO Cart (cartid, userid, bid) VALUES (5, 1, 'b005');

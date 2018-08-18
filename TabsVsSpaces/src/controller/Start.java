@@ -17,6 +17,7 @@ import bean.CartBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
+import model.CartUtil;
 import model.Model;
 import model.ReviewUtil;
 import webservices.SOAPUtils;
@@ -94,6 +95,7 @@ public class Start extends HttpServlet {
 		
 		// Shopping Cart pages
 		String cartPage = request.getParameter("cartPage");
+		String cartRemove = request.getParameter("cartRemove");
 		
 		// Login/Logout pages
 		String username = request.getParameter(USERNAME);
@@ -236,8 +238,22 @@ public class Start extends HttpServlet {
 			target = "CartPage.jspx";
 			try {
 				// Show items in cart
-				request.setAttribute("cart", sis.retrieveCartByUserId(currentUser.getUserID()));
+				Map<Integer, CartBean> cart = sis.retrieveCartByUserId(currentUser.getUserID());
+				request.setAttribute("cart", cart);
+				request.setAttribute("cartSize", cart.size());
+				request.setAttribute("cartPrice", CartUtil.calculateTotalPrice(cart));
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher(target).forward(request, response);
+		}
+		// User removes item in cart
+		else if (currentUser != null && cartRemove != null && !cartRemove.equals("")) {
+			target = "/?cartPage=cartPage";
+			try {
+				// Remove cart item
+				sis.removeCartByCartId(Integer.parseInt(cartRemove));
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
