@@ -46,6 +46,9 @@ public class Model {
 	public void removeCartByCartId(int a_cartid) throws Exception {
 		this.cartDAO.removeCartItem(a_cartid);
 	}
+	public void addToCart(int a_userid, String a_bid) throws Exception {
+		this.cartDAO.addNewCartItem(a_userid, a_bid);
+	}
 	
 	// Books
 	public Map<String, BookBean> retrieveBookByCategory(String category) throws Exception {

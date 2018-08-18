@@ -1,6 +1,21 @@
-//Cart
+// Cart checkout 
 function cartCheckOut() {
-	alert("Successfully removed!");
+    if (confirm("Do you want to checkout?")) {
+    	return true;
+    } else {
+        return false;
+    }
+}
+
+//UC M5: Add an individual book to the shopping cart
+function cartUpdated() {
+	alert("This book has been added to your cart.");
+	return true;
+}
+
+// Prompt the user to sign in before adding a review or a book to the cart
+function pleaseSignIn() {
+	alert("Please sign in first.");
 	return true;
 }
 

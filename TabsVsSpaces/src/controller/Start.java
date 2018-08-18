@@ -96,6 +96,7 @@ public class Start extends HttpServlet {
 		// Shopping Cart pages
 		String cartPage = request.getParameter("cartPage");
 		String cartRemove = request.getParameter("cartRemove");
+		String addToCart = request.getParameter("addToCart");
 		
 		// Login/Logout pages
 		String username = request.getParameter(USERNAME);
@@ -317,8 +318,16 @@ public class Start extends HttpServlet {
 		}		
 		
 		// Book is added to the cart
-		else if (false)
+		else if (currentUser != null && addToCart != null && !addToCart.equals(""))
 		{
+			try {
+				sis.addToCart(currentUser.getUserID(), addToCart);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			// Redirect back to the book page
+			String url = request.getRequestURL().append("?").append("book=").append(addToCart).toString();
+			response.sendRedirect(url);
 		}
 		
 		// User uses SOAP service "getProductInfo(bid)"

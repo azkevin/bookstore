@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import bean.CartBean;
+import bean.ReviewBean;
 
 public class CartDAO {
 	
@@ -68,11 +69,36 @@ public class CartDAO {
 			sta.executeUpdate(removeQuery);
 			sta.close();
 			con.close();
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
+	public void addNewCartItem(int a_userid, String a_bid) throws SQLException {
+		try {
+			Connection con = this.ds.getConnection();
+			Statement sta = con.createStatement();
+			
+			// get the maximum userid from the db
+			ResultSet r = sta.executeQuery("SELECT * FROM cart ORDER BY cartid DESC FETCH FIRST ROW ONLY");
+			r.next();
+		    int rowCount = r.getInt(1);   
+		    r.close();
+		 
+		    rowCount++;
+		    
+		    String insertQuery = "INSERT INTO cart (cartid, userid, bid) " + "VALUES (" + rowCount + ", "
+			    + a_userid + ", \'" 
+			    + a_bid + "\')";
+			
+		    sta.executeUpdate(insertQuery);
+			sta.close();
+			con.close();
 
 		} catch (Exception e) {
 			System.err.println("Exception: " + e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
 }

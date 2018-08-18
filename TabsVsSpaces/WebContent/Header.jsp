@@ -43,12 +43,14 @@
 				<c:if test="${empty username}">
 					<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
 				</c:if>
-				<c:if test="${empty username}">
-				<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Cart</a></li>
-				</c:if>
-				<c:if test="${not empty username}">
-				<li><a href="${pageContext.request.contextPath}/?cartPage=cartPage">Cart</a></li>
-				</c:if>
+				<c:choose>
+					<c:when test="${empty username}">
+						<li><a href="${pageContext.request.contextPath}/LoginPage.jspx" onclick="return pleaseSignIn()">Cart</a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="${pageContext.request.contextPath}/?cartPage=cartPage">Cart</a></li>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 		</nav>
 	</section>

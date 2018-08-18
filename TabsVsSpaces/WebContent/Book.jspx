@@ -38,9 +38,16 @@
 					<br/>
 					<tr>
 						<div align="center">
-							<a href="${pageContext.request.contextPath}/?book=${bookItem.bid}" class="button"  name="add_cart">Add to Cart</a>
+							<c:choose>
+								<c:when test="${not empty username}">
+									<a href="${pageContext.request.contextPath}/?addToCart=${bookItem.bid}" class="button" name="addToCart" onclick="return cartUpdated()">Add to Cart</a>
+								</c:when>
+								<c:otherwise>
+									<a href="${pageContext.request.contextPath}/LoginPage.jspx" class="button" onclick="return pleaseSignIn()">Add to Cart</a>
+								</c:otherwise>
+							</c:choose>
 							<c:if test="${not reviewEligible}">
-								<a href="${pageContext.request.contextPath}/LoginPage.jspx" class="button">Add a Review</a>
+								<a href="${pageContext.request.contextPath}/LoginPage.jspx" class="button" onclick="return pleaseSignIn()">Add a Review</a>
 							</c:if>
 							<a href="${pageContext.request.contextPath}/?getProductInfo=${bookItem.bid}" class="button"  name="getProductInfo">getProductInfo(${bookItem.bid})</a>
 						</div>
