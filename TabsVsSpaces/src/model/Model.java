@@ -5,6 +5,7 @@ import java.util.Map;
 
 import DAO.AddressDAO;
 import DAO.BookDAO;
+import DAO.CartDAO;
 import DAO.ReviewDAO;
 import DAO.SoldDAO;
 import DAO.LoginDAO;
@@ -12,6 +13,7 @@ import DAO.OrderDAO;
 import DAO.RegisterDAO;
 import bean.AddressBean;
 import bean.BookBean;
+import bean.CartBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
@@ -24,6 +26,7 @@ public class Model {
 	private AddressDAO addressDAO;
 	private OrderDAO orderDAO;
 	private SoldDAO soldDAO;
+	private CartDAO cartDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
@@ -33,6 +36,12 @@ public class Model {
 		this.addressDAO = new AddressDAO();
 		this.orderDAO = new OrderDAO();
 		this.soldDAO = new SoldDAO();
+		this.cartDAO = new CartDAO();
+	}
+	
+	// Shopping Cart
+	public Map<Integer, CartBean> retrieveCartByUserId(int a_userid) throws Exception {
+		return this.cartDAO.retrieveByUserId(a_userid);
 	}
 	
 	// Books

@@ -13,17 +13,54 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="StyleSheet" href="res/mc.css" type="text/css"
 	media="screen, print" />
+<script type="text/javascript" src="res/mc.js">;</script>
 <title>Bookstore</title>
 </head>
 <body>
 
-	<jsp:include page="Header.jsp" />
-
-	<h2 style="text-align: center">Cart</h2>
-
-	<!-- Comment from Akshay
-	Add a button called "Place Your Order" or something like that which will take the current user to VerifyOrderPage which has "Confirm" button
-	-->
+	<form action="" method="GET" onsubmit="return validate();">
+		<jsp:include page="Header.jsp" />
+	
+		<div class="subnav">
+			<ul>
+				<li><a href="${pageContext.request.contextPath}/?category=All">All</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Engineering">Engineering</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Fiction">Fiction</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=History">History</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Romance">Romance</a></li>
+				<li><a href="${pageContext.request.contextPath}/?category=Science">Science</a></li>
+				<input type="text" id="searchInput" onkeyup="searchText()" placeholder="Search title..."/>
+			</ul>
+		</div>
+	
+		<h2 style="text-align: center">Your Shopping Cart</h2>
+		
+		<p style="text-align: center"><b>Item(s):</b> </p>
+		<p style="text-align: center"><b>Total Price:</b> </p>
+		<br/>
+		<div align="center">
+			<a href="${pageContext.request.contextPath}/?category=All" class="button">Checkout</a>
+		</div>
+		<br/> <br/>
+		<c:if test="${not empty cart }">
+			<div align="center">	
+			<table>
+				<tr><td><h2><b><u>Reviews</u></b></h2></td></tr>
+				<c:forEach var="item" items="${cart.values()}">
+					<tr>
+						<td><p>${item.coverart}</p></td>
+						<td><p>${item.title}</p></td>
+						<td><p>${item.price}</p></td>
+						<td><p>Remove?</p></td>
+						<td><p>${item.cartid}</p></td>
+						<td><p>${item.userid}</p></td>
+						<td><p>${item.bid}</p></td>
+					</tr>
+				</c:forEach>
+			</table>
+			</div>
+		</c:if>
+	</form>
 </body>
 	</html>
 </jsp:root>

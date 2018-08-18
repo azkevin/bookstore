@@ -8,40 +8,40 @@ package bean;
 
 public class CartBean 
 {
+	private int cartid;
+	private int userid;
 	private String bid;
-	private String title;
-	private String author;
 	private String coverart;
+	private String title;
 	private float price;
-	private int quantity;
 	
-	public CartBean(String bid, String title, String author, String coverart, float price, int quantity) 
-	{
+	public CartBean(int cartid, int userid, String bid, String coverart, String title, float price) {
+		super();
+		this.cartid = cartid;
+		this.userid = userid;
 		this.bid = bid;
-		this.title = title;
-		this.author = author;
 		this.coverart = coverart;
+		this.title = title;
 		this.price = price;
-		this.quantity = quantity;
 	}
 	
+	public int getCartid() {
+		return cartid;
+	}
+	public void setCartid(int cartid) {
+		this.cartid = cartid;
+	}
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
 	public String getBid() {
 		return bid;
 	}
 	public void setBid(String bid) {
 		this.bid = bid;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
 	}
 	public String getCoverart() {
 		return coverart;
@@ -49,18 +49,17 @@ public class CartBean
 	public void setCoverart(String coverart) {
 		this.coverart = coverart;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
 	public float getPrice() {
 		return price;
 	}
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
 	
 }

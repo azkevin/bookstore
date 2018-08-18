@@ -153,3 +153,14 @@ CREATE TABLE VisitEvent (
 INSERT INTO VisitEvent (visiteventid, day, bid, eventtype) VALUES (1, '12202015', 'b001', 'VIEW');
 INSERT INTO VisitEvent (visiteventid, day, bid, eventtype) VALUES (2, '12242015', 'b001', 'CART');
 INSERT INTO VisitEvent (visiteventid, day, bid, eventtype) VALUES (3, '12252015', 'b001', 'PURCHASE');
+
+CREATE TABLE Cart (
+	cartid INT NOT NULL,
+	userid INT NOT NULL,
+	bid VARCHAR(20) NOT NULL,
+	PRIMARY KEY(cartid),
+	FOREIGN KEY (userid) REFERENCES Users (userid) ON DELETE CASCADE,
+	FOREIGN KEY(bid) REFERENCES Book(bid) ON DELETE CASCADE
+);
+
+INSERT INTO Cart (cartid, userid, bid) VALUES (1, 1, 'b001');

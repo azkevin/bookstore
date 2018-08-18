@@ -31,38 +31,34 @@ public class CartDAO {
 		}
 	}
 	
-	/**
-	 * @param bid the book id being searched
-	 * @return a CartBean holding the data of the book searched
-	 * @throws SQLException
-	 */
-	public CartBean findById(String bid) throws SQLException
-	{
-		String query = "SELECT TITLE, AUTHOR, COVERART, PRICE FROM BOOK B WHERE B.bid='" + bid + "'";
-		
+	public Map<Integer, CartBean> retrieveByUserId(int a_userid) throws SQLException {
+		String query = "select * from cart where userid=" + a_userid;
+		Map<Integer, CartBean> rv = new HashMap<Integer, CartBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-
-		while (r.next())
-		{
-			String title = r.getString("TITLE");
-			String author = r.getString("AUTHOR");
-			String coverart = r.getString("COVERART");
-			float price = Float.parseFloat(r.getString("PRICE"));
-			
-
-	
-			CartBean cb = new CartBean(bid, title, author, coverart, price, 1);
-			
-			r.close();
-			p.close();
-			con.close();
-			
-			return cb;
-			
+		while(r.next()){
+			int cartid = r.getInt("cartid");
+			String bid = r.getString("bid");
+			String bookQuery = "select * from book where bid like '" + bid + "'";
+			PreparedStatement p2 = con.prepareStatement(bookQuery);
+			ResultSet r2 = p2.executeQuery();
+			String coverart = "";
+			String title = "";
+			float price = 0.0f;
+			while(r2.next()) {
+				coverart = r2.getString("coverart");
+				title = r2.getString("title");
+				price = r2.getFloat("price");
+			}
+			CartBean bean = new CartBean(cartid, r.getInt("userid"), bid, coverart, title, price);
+			rv.put(cartid, bean);
 		}
-		return new CartBean("bnf", "Book Not Found", "Nobody", "", 0, 0);
+		r.close();
+		p.close();
+		con.close();
+		
+		return rv;
 	}
 
 }

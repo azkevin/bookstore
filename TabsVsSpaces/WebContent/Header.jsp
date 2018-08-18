@@ -43,8 +43,12 @@
 				<c:if test="${empty username}">
 					<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Login</a></li>
 				</c:if>
-					
-				<li><a href="${pageContext.request.contextPath}/CartPage.jspx">Cart</a></li>
+				<c:if test="${empty username}">
+				<li><a href="${pageContext.request.contextPath}/LoginPage.jspx">Cart</a></li>
+				</c:if>
+				<c:if test="${not empty username}">
+				<li><a href="${pageContext.request.contextPath}/?cartPage=cartPage">Cart</a></li>
+				</c:if>
 			</ul>
 		</nav>
 	</section>
