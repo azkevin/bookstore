@@ -287,6 +287,26 @@ public class Start extends HttpServlet {
 			
 			//<TODO> Code to submit an order, depends on how the shopping cart is defined
 			
+			if(request.getServletContext().getAttribute("requestCount") == null)
+				request.getServletContext().setAttribute("requestCount", 1);
+			else
+			{
+				int requestCount = Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString());
+				requestCount++;
+				request.getServletContext().setAttribute("requestCount", requestCount);
+			}
+			
+			// hard code every third request is denied
+			if(Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString()) % 3 == 0)
+			{
+				request.setAttribute("error", "Credit Card Authorization Failed!");
+			}
+			else
+			{	
+				request.setAttribute("error", "Order Successfully Completed.");
+			}
+			
+			request.getRequestDispatcher("VerifyOrderPage.jspx").forward(request, response);
 		}
 		
 		else if(category != null && !category.equals("")){
