@@ -301,14 +301,26 @@ public class Start extends HttpServlet {
 			}
 			
 			// hard code every third request is denied
-			if(Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString()) % 3 == 0)
+			int userid = currentUser.getUserID();
+			boolean fail = Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString()) % 3 == 0 ? true : false;
+			CreditCardBean cd;
+
+			//verify user's credit card details
+			try {
+				cd = sis.getCreditCard(userid);
+				fail = !fail && (cardnum.equals(cd.getNumber()) && cvv.equals(cd.getCvv()) ? true : false);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(!fail)
 			{
 				request.setAttribute("orderHeader", "Oops! Something went wrong.");
 				request.setAttribute("orderMessage", "Credit card authorization failed!");
 			}
 			else
 			{
-				//if the order is successful, remove items from the cart
+				//if the order is successful, remove items from the cart				
 				try {
 					cart = sis.retrieveCartByUserId(currentUser.getUserID());
 					for(CartBean c: cart.values())
