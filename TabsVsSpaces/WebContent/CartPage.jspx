@@ -41,7 +41,7 @@
 				<p style="text-align: center"><b>Total Price:</b> $${cartPrice}</p>
 				<br/>
 				<div align="center">
-				<a href="${pageContext.request.contextPath}/?category=All" class="button" onclick="return cartCheckOut();">Checkout</a>
+				<a href="${pageContext.request.contextPath}/VerifyOrderPage.jspx" class="button" onclick="return cartCheckOut();">Checkout</a>
 				<br/> <br/> <br/>
 				<table>
 					<tr>

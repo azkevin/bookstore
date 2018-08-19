@@ -169,9 +169,7 @@ public class Start extends HttpServlet {
 					}
 					
 					if(booksSold != null)
-					{
 						request.getServletContext().setAttribute("booksSold", booksSold);
-					}
 					
 					request.getRequestDispatcher("AdminPage.jspx").forward(request, response);
 				}
@@ -269,6 +267,7 @@ public class Start extends HttpServlet {
 			}
 			request.getRequestDispatcher(target).forward(request, response);
 		}
+		
 		// User removes item in cart
 		else if (currentUser != null && cartRemove != null && !cartRemove.equals("")) {
 			target = "/?cartPage=cartPage";
@@ -281,12 +280,11 @@ public class Start extends HttpServlet {
 			request.getRequestDispatcher(target).forward(request, response);
 		}
 		
+		//User confirms an order
 		else if(request.getParameter("confirm") != null) 
 		{
 			//place an order
-			
 			//<TODO> Code to submit an order, depends on how the shopping cart is defined
-			
 			if(request.getServletContext().getAttribute("requestCount") == null)
 				request.getServletContext().setAttribute("requestCount", 1);
 			else
@@ -298,14 +296,9 @@ public class Start extends HttpServlet {
 			
 			// hard code every third request is denied
 			if(Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString()) % 3 == 0)
-			{
 				request.setAttribute("error", "Credit Card Authorization Failed!");
-			}
 			else
-			{	
 				request.setAttribute("error", "Order Successfully Completed.");
-			}
-			
 			request.getRequestDispatcher("VerifyOrderPage.jspx").forward(request, response);
 		}
 		
@@ -317,6 +310,7 @@ public class Start extends HttpServlet {
 			}
 			request.getRequestDispatcher(target).forward(request, response);
 		} 
+		
 		// User has submitted a review
 		else if((reviewRating != null && reviewText != null && reviewBookId != null)
 				&& (!reviewRating.equals("") && !reviewText.equals("") && !reviewBookId.equals(""))) {
@@ -377,8 +371,10 @@ public class Start extends HttpServlet {
 			request.setAttribute("getProductInfo", util.getProductInfo(getProductInfo));
 			request.getRequestDispatcher(target).forward(request, response);
 		}
+		
 		//Default category should be "All" on the landing page
 		else {
+			System.out.println("MainPage");
 			String url = request.getRequestURL().append("?").append("category=All").toString();
 			response.sendRedirect(url);
 		}
