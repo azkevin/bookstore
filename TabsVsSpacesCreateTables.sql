@@ -47,7 +47,7 @@ INSERT INTO Users (userid, username, password, email, firstname, lastname, type)
 INSERT INTO Users (userid, username, password, email, firstname, lastname, type) VALUES (4, 'jwhite', 'jwhite123', 'jwhite@gmail.com', 'John', 'White', 'customer');
 INSERT INTO Users (userid, username, password, email, firstname, lastname, type) VALUES (5, 'pblack', 'pblack123', 'pblack@gmail.com', 'Peter', 'Black', 'customer');
 INSERT INTO Users (userid, username, password, email, firstname, lastname, type) VALUES (6, 'agreen', 'agreen123', 'agreen@gmail.com', 'Andy', 'Green', 'customer');
-
+INSERT INTO Users (userid, username, password, email, firstname, lastname, type) VALUES (7, 'tstark', 'tstark123', 'tstark@gmail.com', 'Tony', 'Stark', 'customer');
 
 CREATE TABLE Address (
 	id INT NOT NULL,
@@ -65,6 +65,13 @@ INSERT INTO Address (id, street, province, country, zip, phone) VALUES (2, '445 
 'Canada', 'M1C 6K5' ,'416-123-8569');
 INSERT INTO Address (id, street, province, country, zip, phone) VALUES (3, '789 Keele St.', 'ON',
 'Canada', 'K3C 9T5' ,'416-123-9568');
+INSERT INTO Address (id, street, province, country, zip, phone) VALUES (4, '123 Yonge St', 'ON',
+'Canada', 'K1E 6T5' ,'647-123-4567');
+INSERT INTO Address (id, street, province, country, zip, phone) VALUES (5, '445 Avenue rd', 'ON',
+'Canada', 'M1C 6K5' ,'416-123-8569');
+INSERT INTO Address (id, street, province, country, zip, phone) VALUES (6, '789 Keele St.', 'ON',
+'Canada', 'K3C 9T5' ,'416-123-9568');
+INSERT INTO Address (id, street, province, country, zip, phone) VALUES (7, '789 Keele St.', 'ON', 'Canada', 'K3C 9T5' ,'416-123-9568');
 
 CREATE TABLE PO (
 	poid INT NOT NULL,
@@ -168,3 +175,21 @@ INSERT INTO Cart (cartid, userid, bid) VALUES (2, 1, 'b002');
 INSERT INTO Cart (cartid, userid, bid) VALUES (3, 1, 'b003');
 INSERT INTO Cart (cartid, userid, bid) VALUES (4, 1, 'b004');
 INSERT INTO Cart (cartid, userid, bid) VALUES (5, 1, 'b005');
+
+CREATE TABLE CreditCard (
+	ccid INT NOT NULL,
+	type VARCHAR(20) NOT NULL,
+	num VARCHAR(10) NOT NULL,
+	cvv VARCHAR(3) NOT NULL,
+	month VARCHAR(3) NOT NULL,
+	yr VARCHAR(4),
+	PRIMARY KEY(ccid)
+);
+
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (1, 'visa', '0123456789', '123', 'jan', '2019');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (2, 'mastercard', '0123456789', '123', 'dec', '2019');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (3, 'visa', '0123456789', '123', 'jan', '2019');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (4, 'mastercard', '9876543210', '321', 'dec', '2020');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (5, 'visa', '9876543210', '321', 'dec', '2020');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (6, 'mastercard', '9876543210', '321', 'dec', '2020');
+INSERT INTO CreditCard (ccid, type, num, cvv, month, yr) VALUES (7, 'visa', '0123456789', '123', 'jan', '2019');

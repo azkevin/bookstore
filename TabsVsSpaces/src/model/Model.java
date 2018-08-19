@@ -6,6 +6,7 @@ import java.util.Map;
 import DAO.AddressDAO;
 import DAO.BookDAO;
 import DAO.CartDAO;
+import DAO.CreditCardDAO;
 import DAO.ReviewDAO;
 import DAO.SoldDAO;
 import DAO.LoginDAO;
@@ -14,6 +15,7 @@ import DAO.RegisterDAO;
 import bean.AddressBean;
 import bean.BookBean;
 import bean.CartBean;
+import bean.CreditCardBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
@@ -27,6 +29,7 @@ public class Model {
 	private OrderDAO orderDAO;
 	private SoldDAO soldDAO;
 	private CartDAO cartDAO;
+	private CreditCardDAO creditcardDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
@@ -37,6 +40,7 @@ public class Model {
 		this.orderDAO = new OrderDAO();
 		this.soldDAO = new SoldDAO();
 		this.cartDAO = new CartDAO();
+		this.creditcardDAO = new CreditCardDAO();
 	}
 	
 	// Shopping Cart
@@ -77,12 +81,16 @@ public class Model {
 	}
 	
 	public UserBean addNewUser(String username, String pwd, String email, String fName, String lName, String street, String province,
-			String country, String zip, String phoneNumber) throws Exception {
-		return registerDAO.addNewUser(username, pwd, email, fName, lName, street, province, country, zip, phoneNumber);
+			String country, String zip, String phoneNumber, String type, String number, String cvv, String month, String year) throws Exception {
+		return registerDAO.addNewUser(username, pwd, email, fName, lName, street, province, country, zip, phoneNumber, type, number, cvv, month, year);
 	}
 	
 	public AddressBean getAddress(int userID) throws Exception{
 		return addressDAO.getAddress(userID);
+	}
+	
+	public CreditCardBean getCreditCard(int ccid) throws Exception {
+		return creditcardDAO.getCreditCard(ccid);
 	}
 	
 	public Map<String, SoldBean> retrieveBooksSold() throws Exception {

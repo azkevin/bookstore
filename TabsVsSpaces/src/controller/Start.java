@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import bean.AddressBean;
 import bean.BookBean;
 import bean.CartBean;
+import bean.CreditCardBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
@@ -31,6 +32,7 @@ public class Start extends HttpServlet {
 	private Model sis;
 	private UserBean currentUser;
 	private AddressBean currentUserAddress;
+	private CreditCardBean currentUserCreditCard;
 	private Map<String, SoldBean> booksSold;
 	
 	//used for login
@@ -142,11 +144,19 @@ public class Start extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			try {
+				currentUserCreditCard = sis.getCreditCard(currentUser.getUserID());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if(currentUser != null)
 			{
 				//Login Successful. Load main page
 				request.getServletContext().setAttribute("username", currentUser);
 				request.getServletContext().setAttribute("userdetails", currentUserAddress);
+				request.getServletContext().setAttribute("usercreditcard", currentUserCreditCard);
 				
 				//if the current user is admin, take him to AdminPage
 				if(currentUser.getFirstName().equals("admin"))
@@ -185,10 +195,12 @@ public class Start extends HttpServlet {
 			//yet to implement error logging out case(not necessary though)
 			currentUser = null;
 			currentUserAddress = null;
+			currentUserCreditCard = null;
 			username = "";
 			password = "";
 			request.getServletContext().removeAttribute("username");
 			request.getServletContext().removeAttribute("userdetails");
+			request.getServletContext().removeAttribute("usercreditcard");
 			
 			if(request.getServletContext().getAttribute("username") == null)
 			{
@@ -206,7 +218,7 @@ public class Start extends HttpServlet {
 		{
 			String user_name = email.substring(0, email.indexOf('@'));
 			try {
-				currentUser = sis.addNewUser(user_name, acc_password, email, fName, lName, street, province, country, zip, phoneNumber);
+				currentUser = sis.addNewUser(user_name, acc_password, email, fName, lName, street, province, country, zip, phoneNumber, cardtype, cardnum, cvv, month, year);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -219,11 +231,19 @@ public class Start extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			try {
+				currentUserCreditCard = sis.getCreditCard(currentUser.getUserID());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			if(currentUser != null)
 			{
 				//Account Creation Successful. Load main page
 				request.getServletContext().setAttribute("username", currentUser);
 				request.getServletContext().setAttribute("userdetails", currentUserAddress);
+				request.getServletContext().setAttribute("usercreditcard", currentUserCreditCard);
 				String url = request.getRequestURL().append("?").append("category=All").toString();
 				response.sendRedirect(url);
 			}

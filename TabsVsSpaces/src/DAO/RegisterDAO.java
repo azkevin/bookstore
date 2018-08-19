@@ -29,7 +29,7 @@ public class RegisterDAO {
 	//Add user to our DB
 	/**********Methods*********/
 	public UserBean addNewUser(String username, String pwd, String email, String fName, String lName, String street, String province,
-			String country, String zip, String phoneNumber) throws SQLException {
+			String country, String zip, String phoneNumber, String a_cctype, String a_ccnumber, String a_cvv, String a_ccmonth, String a_ccyear) throws SQLException {
 		try {
 			Connection con = this.ds.getConnection();
 			Statement sta = con.createStatement();
@@ -56,6 +56,10 @@ public class RegisterDAO {
 							+ "\', \'" + country  + "\', \'" + zip  + "\', \'" + phoneNumber + "\')";
 			sta.executeUpdate(address_query);
 			
+			//	3. Update CreditCard Table
+		    String creditcard_query = "INSERT INTO creditcard " + "VALUES (" + rowCount + ", \'" + a_cctype + "\', \'" + a_ccnumber 
+					+ "\', \'" + a_cvv  + "\', \'" + a_ccmonth  + "\', \'" + a_ccyear + "\')";
+		    sta.executeUpdate(creditcard_query);
 			sta.close();
 			con.close();
 
