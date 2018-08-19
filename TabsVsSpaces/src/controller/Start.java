@@ -34,6 +34,7 @@ public class Start extends HttpServlet {
 	private AddressBean currentUserAddress;
 	private CreditCardBean currentUserCreditCard;
 	private Map<String, SoldBean> booksSold;
+	Map<Integer, CartBean> cart;
 	
 	//used for login
 	private static final String USERNAME = "username";
@@ -64,6 +65,11 @@ public class Start extends HttpServlet {
 	private static final String REVIEW_BID = "reviewBookId";
 	private static final String REVIEW_TEXT = "reviewText";
 	private static final String REVIEW_RATING = "reviewRating";
+
+	//Used for Shopping Cart
+	private static final String CART_PAGE = "cartPage";
+	private static final String CART_REMOVE = "cartRemove";
+	private static final String ADD_TO_CART = "addToCart";
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -96,9 +102,9 @@ public class Start extends HttpServlet {
 		String getProductInfo = request.getParameter("getProductInfo");
 		
 		// Shopping Cart pages
-		String cartPage = request.getParameter("cartPage");
-		String cartRemove = request.getParameter("cartRemove");
-		String addToCart = request.getParameter("addToCart");
+		String cartPage = request.getParameter(CART_PAGE);
+		String cartRemove = request.getParameter(CART_REMOVE);
+		String addToCart = request.getParameter(ADD_TO_CART);
 		
 		// Login/Logout pages
 		String username = request.getParameter(USERNAME);
@@ -125,7 +131,7 @@ public class Start extends HttpServlet {
 		String reviewText = request.getParameter(REVIEW_TEXT);
 		
 		request.setAttribute("category", category); //Set attribute for header on main page
-				
+		
 		//If the login button is clicked
 		if(request.getParameter("login") != null)
 		{
@@ -257,10 +263,10 @@ public class Start extends HttpServlet {
 			target = "CartPage.jspx";
 			try {
 				// Show items in cart
-				Map<Integer, CartBean> cart = sis.retrieveCartByUserId(currentUser.getUserID());
-				request.setAttribute("cart", cart);
-				request.setAttribute("cartSize", cart.size());
-				request.setAttribute("cartPrice", CartUtil.calculateTotalPrice(cart));
+				cart = sis.retrieveCartByUserId(currentUser.getUserID());
+				request.getServletContext().setAttribute("cart", cart);
+				request.getServletContext().setAttribute("cartSize", cart.size());
+				request.getServletContext().setAttribute("cartPrice", CartUtil.calculateTotalPrice(cart));
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -282,7 +288,7 @@ public class Start extends HttpServlet {
 		
 		//User confirms an order
 		else if(request.getParameter("confirm") != null) 
-		{
+		{			
 			//place an order
 			//<TODO> Code to submit an order, depends on how the shopping cart is defined
 			if(request.getServletContext().getAttribute("requestCount") == null)
@@ -296,10 +302,28 @@ public class Start extends HttpServlet {
 			
 			// hard code every third request is denied
 			if(Integer.parseInt(request.getServletContext().getAttribute("requestCount").toString()) % 3 == 0)
-				request.setAttribute("error", "Credit Card Authorization Failed!");
+			{
+				request.setAttribute("orderHeader", "Oops! Something went wrong.");
+				request.setAttribute("orderMessage", "Credit card authorization failed!");
+			}
 			else
-				request.setAttribute("error", "Order Successfully Completed.");
-			request.getRequestDispatcher("VerifyOrderPage.jspx").forward(request, response);
+			{
+				//if the order is successful, remove items from the cart
+				try {
+					cart = sis.retrieveCartByUserId(currentUser.getUserID());
+					for(CartBean c: cart.values())
+					{
+						sis.removeCartByCartId(c.getCartid());
+					}
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				request.setAttribute("orderHeader", "Success!");
+				request.setAttribute("orderMessage", "Order successfully placed.");
+			}
+			request.getRequestDispatcher("OrderMessage.jspx").forward(request, response);
 		}
 		
 		else if(category != null && !category.equals("")){
@@ -374,7 +398,6 @@ public class Start extends HttpServlet {
 		
 		//Default category should be "All" on the landing page
 		else {
-			System.out.println("MainPage");
 			String url = request.getRequestURL().append("?").append("category=All").toString();
 			response.sendRedirect(url);
 		}
