@@ -11,6 +11,7 @@ import DAO.ReviewDAO;
 import DAO.SoldDAO;
 import DAO.LoginDAO;
 import DAO.OrderDAO;
+import DAO.PODAO;
 import DAO.RegisterDAO;
 import bean.AddressBean;
 import bean.BookBean;
@@ -30,6 +31,7 @@ public class Model {
 	private SoldDAO soldDAO;
 	private CartDAO cartDAO;
 	private CreditCardDAO creditcardDAO;
+	private PODAO poDAO;
 	
 	public Model() throws ClassNotFoundException {
 		this.bookDAO = new BookDAO();
@@ -41,6 +43,12 @@ public class Model {
 		this.soldDAO = new SoldDAO();
 		this.cartDAO = new CartDAO();
 		this.creditcardDAO = new CreditCardDAO();
+		this.poDAO = new PODAO();
+	}
+	
+	// PO/Orders
+	public void addToPO(int a_userid, int a_addressid) throws Exception {
+		this.poDAO.addNewPO(a_userid, a_addressid);
 	}
 	
 	// Shopping Cart

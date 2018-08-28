@@ -320,9 +320,11 @@ public class Start extends HttpServlet {
 			}
 			else
 			{
-				//if the order is successful, remove items from the cart				
+				//if the order is successful, remove items from the cart
+				//and add to the PO table
 				try {
 					cart = sis.retrieveCartByUserId(currentUser.getUserID());
+					sis.addToPO(currentUser.getUserID(), currentUserAddress.getUserID());
 					for(CartBean c: cart.values())
 					{
 						sis.removeCartByCartId(c.getCartid());
