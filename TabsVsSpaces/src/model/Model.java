@@ -1,7 +1,18 @@
 package model;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import javax.xml.XMLConstants;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import DAO.AddressDAO;
 import DAO.BookDAO;
@@ -17,6 +28,7 @@ import bean.AddressBean;
 import bean.BookBean;
 import bean.CartBean;
 import bean.CreditCardBean;
+import bean.POBean;
 import bean.ReviewBean;
 import bean.SoldBean;
 import bean.UserBean;
@@ -50,7 +62,10 @@ public class Model {
 	public void addToPO(int a_userid, int a_addressid) throws Exception {
 		this.poDAO.addNewPO(a_userid, a_addressid);
 	}
-	
+	public Map<Integer, POBean> retrieveByPOId(int a_poid) throws Exception {
+		return this.poDAO.retrieveByPOId(a_poid);
+	}
+
 	// Shopping Cart
 	public Map<Integer, CartBean> retrieveCartByUserId(int a_userid) throws Exception {
 		return this.cartDAO.retrieveByUserId(a_userid);

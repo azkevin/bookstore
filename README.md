@@ -35,6 +35,11 @@ To access the SOAP Web Service, invoke an HTTP POST request at the following end
 If TabsVsSpaces_Test is also running on the server, a test client can be accessed at the following link:
 - http://localhost:8080/TabsVsSpaces_Test/sampleSOAP_TVSProxy/TestClient.jsp?endpoint=http://localhost:11230/TabsVsSpaces/services/SOAP_TVS
 
+### REST
+
+To access the REST Web Service, invoke an HTTP GET request at the following endpoint for the "getOrdersByPartNumber" service, where x in 'poid=x' is purchase order id:
+- http://localhost:8080/TabsVsSpaces/rest/tvs/getOrdersByPartNumber?poid=1
+
 ## Credit
 
 This project was made for EECS4413, an e-commerce software development class at York University.

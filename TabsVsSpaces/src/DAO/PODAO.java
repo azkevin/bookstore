@@ -1,13 +1,19 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import bean.CartBean;
+import bean.POBean;
 
 
 public class PODAO {
@@ -51,5 +57,22 @@ public class PODAO {
 			System.err.println("Exception: " + e.getMessage());
 			e.printStackTrace();
 		}
+	}
+	
+	public Map<Integer, POBean> retrieveByPOId(int a_poid) throws SQLException {
+		String query = "select * from po where poid=" + a_poid;
+		Map<Integer, POBean> rv = new HashMap<Integer, POBean>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while(r.next()){
+			POBean bean = new POBean(a_poid, r.getInt("userid"), r.getInt("addressid"), r.getString("status"));
+			rv.put(a_poid, bean);
+		}
+		r.close();
+		p.close();
+		con.close();
+		
+		return rv;
 	}
 }
