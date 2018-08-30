@@ -444,11 +444,3 @@ form#input table#inputTable tbody tr td a.buttonA {
     display: inline-block;
 }
 
-
-a:hover, a:active {
-    background-color: red;
-}
-
-input[type=submit]:hover {
-    background-color: #45a049;
-}
