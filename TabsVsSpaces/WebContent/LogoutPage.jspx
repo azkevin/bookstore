@@ -23,7 +23,7 @@
 	<h2 style="text-align: center">Logout</h2>
 	
 	<form action='${pageContext.request.contextPath}/Start' id="input" method='POST'>
-		<table class="input_table">
+		<table id="inputTable">
 			<tr> 
 				<td align="center">
 					<label>Are you sure you want to logout?</label>
