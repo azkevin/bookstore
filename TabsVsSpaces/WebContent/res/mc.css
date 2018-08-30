@@ -383,7 +383,7 @@ th{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #455A64;
     color: white;
 }
 
@@ -406,7 +406,7 @@ th{
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #455A64;
     color: white;
 }
 
@@ -433,7 +433,7 @@ form#input table#inputTable tbody tr td button {
 
 form#input table#inputTable tbody tr td a.buttonA {
 	width: 100%;
-    background-color: #1d5dc4;
+    background-color: #455A64;
     color: white;
    	padding: 14px 0px;
     margin: 0px 0;

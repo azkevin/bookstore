@@ -22,14 +22,15 @@
 
 	<h2 style="text-align: center">Verify your information</h2>
 	
-	<form action='${pageContext.request.contextPath}/Start' onsubmit="return acc_form_validate();" method='POST'>
-		<table class="input_table">
+	<form id="input" action='${pageContext.request.contextPath}/Start' onsubmit="return acc_form_validate();" method='POST'>
+		<table id="inputTable">
 					
 			<tr>
 				<th colspan="2">Shipping Information</th>
 			</tr>
 			<tr>
-				<td><label for="name">Name: </label></td> 
+				<td><label for="firstname">Firstname: </label></td> 
+				<td><label for="lastname">Lastname: </label></td> 
 			</tr>
 			<tr>
 				<td> <input name="firstname" id="firstname" value="${username.getFirstName()}" type="string"/></td>

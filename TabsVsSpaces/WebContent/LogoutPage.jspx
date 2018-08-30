@@ -25,9 +25,9 @@
 	<form action='${pageContext.request.contextPath}/Start' id="input" method='POST'>
 		<table id="inputTable">
 			<tr> 
-				<td align="center">
+				<th align="center">
 					<label>Are you sure you want to logout?</label>
-				</td>
+				</th>
 			</tr>
 			<tr>
 				<td colspan="2">
