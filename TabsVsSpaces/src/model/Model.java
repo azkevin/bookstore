@@ -62,6 +62,9 @@ public class Model {
 	public void addToPO(int a_userid, int a_addressid) throws Exception {
 		this.poDAO.addNewPO(a_userid, a_addressid);
 	}
+	public void addDeniedToPO(int a_userid, int a_addressid) throws Exception {
+		this.poDAO.addDeniedPO(a_userid, a_addressid);
+	}
 	public Map<Integer, POBean> retrieveByPOId(int a_poid) throws Exception {
 		return this.poDAO.retrieveByPOId(a_poid);
 	}

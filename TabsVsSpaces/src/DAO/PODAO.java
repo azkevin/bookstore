@@ -59,6 +59,33 @@ public class PODAO {
 		}
 	}
 	
+	public void addDeniedPO(int a_userid, int a_addressid) throws SQLException {
+		try {
+			Connection con = this.ds.getConnection();
+			Statement sta = con.createStatement();
+			
+			// get the maximum userid from the db
+			ResultSet r = sta.executeQuery("SELECT * FROM po ORDER BY poid DESC FETCH FIRST ROW ONLY");
+			r.next();
+		    int rowCount = r.getInt(1);   
+		    r.close();
+		 
+		    rowCount++;
+		    
+		    String insertQuery = "INSERT INTO po (poid, userid, addressid, status) " + "VALUES (" + rowCount + ", "
+			    + a_userid + ", "
+			    + a_addressid + ", \'DENIED\')";
+			
+		    sta.executeUpdate(insertQuery);
+			sta.close();
+			con.close();
+
+		} catch (Exception e) {
+			System.err.println("Exception: " + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
 	public Map<Integer, POBean> retrieveByPOId(int a_poid) throws SQLException {
 		String query = "select * from po where poid=" + a_poid;
 		Map<Integer, POBean> rv = new HashMap<Integer, POBean>();

@@ -264,6 +264,7 @@ public class Start extends HttpServlet {
 			try {
 				// Show items in cart
 				cart = sis.retrieveCartByUserId(currentUser.getUserID());
+				
 				request.getServletContext().setAttribute("cart", cart);
 				request.getServletContext().setAttribute("cartSize", cart.size());
 				request.getServletContext().setAttribute("cartPrice", CartUtil.calculateTotalPrice(cart));
@@ -315,6 +316,12 @@ public class Start extends HttpServlet {
 			}
 			if(!fail)
 			{
+				try {
+					sis.addDeniedToPO(currentUser.getUserID(), currentUserAddress.getUserID());
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				request.setAttribute("orderHeader", "Oops! Something went wrong.");
 				request.setAttribute("orderMessage", "Credit card authorization failed!");
 			}
