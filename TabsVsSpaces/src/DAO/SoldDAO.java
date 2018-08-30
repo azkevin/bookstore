@@ -62,7 +62,6 @@ public class SoldDAO {
 	public Map<String, SoldBean> retrieveBooksSoldByMonth(String month) throws SQLException {
 		String category = "PURCHASE";
 		String query = "select * from VISITEVENT where eventtype like 'PURCHASE' and DAY like \'%" + month + "%\'";
-		System.out.println(query);
 		Map<String, SoldBean> rv = new HashMap<String, SoldBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);

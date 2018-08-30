@@ -34,7 +34,7 @@
 	<h2 style="text-align: center">REPORT</h2>
 	
 	<form id="analyticsForm" action='${pageContext.request.contextPath}/Start' method="POST">
-		<table class="input_table">
+		<table id="analyticsTable">
 			<tr>
 				<td colspan="3"> 
 					<select id="admin_month" name="admin_month" onchange="reportBooksSold();">
@@ -94,7 +94,7 @@
 	
 	<h2 style="text-align: center">Top 10</h2>
 	
-	<table>
+	<table id="analyticsTable">
 		<tr>
 			<th>
 				Title

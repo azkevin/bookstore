@@ -140,9 +140,6 @@ public class Start extends HttpServlet {
 		String adminMonth = request.getParameter(ADMIN_MONTH);
 		String adminYear = request.getParameter(ADMIN_YEAR);
 		
-		System.out.println(adminMonth);
-		System.out.println(adminYear);
-		
 		request.setAttribute("category", category); //Set attribute for header on main page
 		
 		//If the login button is clicked

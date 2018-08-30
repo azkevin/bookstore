@@ -23,7 +23,7 @@
 	<h2 style="text-align: center">Login</h2>
 	
 	<form action='${pageContext.request.contextPath}/Start' id="input" method='POST'>
-		<table class="input_table">
+		<table id="inputTable">
 			<tr>
 				<td> <label for="username">Username: </label></td>
 				<td> <input name="username" id="username" type="string"/></td>
@@ -36,13 +36,13 @@
 			
 			<tr> 
 				<td colspan="2">
-					<button class="button2" type="submit" name="login" value="submit" style="width: 100%">Submit</button>
+					<button  type="submit" name="login" value="submit" style="width: 100%">Submit</button>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="padding: 20px">
+				<td colspan="2">
 				<div style="text-align: center">
-					<a href="${pageContext.request.contextPath}/RegisterUserPage.jspx" class="button">Create Account</a>
+					<a href="${pageContext.request.contextPath}/RegisterUserPage.jspx" class="buttonA">Create Account</a>
 				</div>
 				</td>
 			</tr>
