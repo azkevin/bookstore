@@ -106,8 +106,8 @@
 				Sold
 			</th>
 		</tr>
-		<c:if test="${not empty booksSold }">
-			<c:forEach var="item" items="${booksSold.values()}">
+		<c:if test="${not empty topBooksSold }">
+			<c:forEach var="item" items="${topBooksSold.values()}">
 				<tr>
 					<td>
 						${item.bookBean.title}

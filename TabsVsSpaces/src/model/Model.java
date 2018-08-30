@@ -119,8 +119,13 @@ public class Model {
 		return creditcardDAO.getCreditCard(ccid);
 	}
 	
+	// Analytics
 	public Map<String, SoldBean> retrieveBooksSold() throws Exception {
 		return this.soldDAO.retrieveAllBooksSold();
+	}
+	
+	public Map<Integer, SoldBean> retrieveTopBooksSold() throws Exception {
+		return this.soldDAO.retrieveTopBooksSold();
 	}
 	
 //	public String submitOrder(int uid, String status, ArrayList<CartBean> list) throws Exception{

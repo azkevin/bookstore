@@ -34,6 +34,7 @@ public class Start extends HttpServlet {
 	private AddressBean currentUserAddress;
 	private CreditCardBean currentUserCreditCard;
 	private Map<String, SoldBean> booksSold;
+	private Map<Integer, SoldBean> topBooksSold;
 	Map<Integer, CartBean> cart;
 	
 	//used for login
@@ -169,6 +170,7 @@ public class Start extends HttpServlet {
 				{
 					try {
 						booksSold = sis.retrieveBooksSold();
+						topBooksSold = sis.retrieveTopBooksSold();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -176,6 +178,9 @@ public class Start extends HttpServlet {
 					
 					if(booksSold != null)
 						request.getServletContext().setAttribute("booksSold", booksSold);
+					
+					if(topBooksSold != null)
+						request.getServletContext().setAttribute("topBooksSold", topBooksSold);
 					
 					request.getRequestDispatcher("AdminPage.jspx").forward(request, response);
 				}

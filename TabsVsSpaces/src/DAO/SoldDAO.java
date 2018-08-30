@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -55,6 +56,44 @@ public class SoldDAO {
 		con.close();
 		
 		return rv;
+	}
+	
+	public Map<Integer, SoldBean> retrieveTopBooksSold() throws SQLException {
+		int topSold = 10;
+		String category = "PURCHASE";
+		String query = "select * from visitevent where eventtype like '" + category + "'";
+		Map<String, SoldBean> rv = new HashMap<String, SoldBean>();
+		Map<Integer, SoldBean> rvs = new TreeMap<Integer, SoldBean>();
+		
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while(r.next()){
+			String bid = r.getString("bid");
+			
+			if(rv.containsKey(bid))
+			{
+				SoldBean old = rv.get(bid);
+				old.setQuantity(old.getQuantity() + 1);
+			}
+			else {
+				BookBean bean = b.retrieveBeanByBID(bid);
+				SoldBean s = new SoldBean(bean, 1);
+				rv.put(bid, s);
+			}
+		}
+		r.close();
+		p.close();
+		con.close();
+		
+		for(String s : rv.keySet())
+		{
+			rvs.put(rv.get(s).getQuantity(), rv.get(s));
+			if(rvs.size() == topSold)
+				break;
+		}
+		
+		return rvs;
 	}
 	
 }
