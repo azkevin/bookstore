@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -59,8 +61,8 @@ public class Start extends HttpServlet {
 	private static final String ACC_YEAR = "year";
 	
 	//used for admin analytics
-	private static final String ADMIN_MONTH = "admin-month";
-	private static final String ADMIN_YEAR = "admin-year";
+	private static final String ADMIN_MONTH = "admin_month";
+	private static final String ADMIN_YEAR = "admin_year";
 	
 	//Used for reviews
 	private static final String REVIEW_BID = "reviewBookId";
@@ -94,6 +96,9 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/plain");
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMddYYYY");  
+		LocalDateTime now;
 		
 		String target = "MainPage.jspx";
 		
@@ -130,6 +135,13 @@ public class Start extends HttpServlet {
 		String reviewBookId = request.getParameter(REVIEW_BID);
 		String reviewRating = request.getParameter(REVIEW_RATING);
 		String reviewText = request.getParameter(REVIEW_TEXT);
+		
+		//Admin
+		String adminMonth = request.getParameter(ADMIN_MONTH);
+		String adminYear = request.getParameter(ADMIN_YEAR);
+		
+		System.out.println(adminMonth);
+		System.out.println(adminYear);
 		
 		request.setAttribute("category", category); //Set attribute for header on main page
 		
@@ -269,7 +281,6 @@ public class Start extends HttpServlet {
 			try {
 				// Show items in cart
 				cart = sis.retrieveCartByUserId(currentUser.getUserID());
-				
 				request.getServletContext().setAttribute("cart", cart);
 				request.getServletContext().setAttribute("cartSize", cart.size());
 				request.getServletContext().setAttribute("cartPrice", CartUtil.calculateTotalPrice(cart));
@@ -314,7 +325,7 @@ public class Start extends HttpServlet {
 			//verify user's credit card details
 			try {
 				cd = sis.getCreditCard(userid);
-				fail = !fail && (cardnum.equals(cd.getNumber()) && cvv.equals(cd.getCvv()) ? true : false);
+				fail = !fail && ((cardnum.equals(cd.getNumber()) && cvv.equals(cd.getCvv()) && month.equals(cd.getMonth()) && year.equals(cd.getYear())) ? true : false);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -339,6 +350,9 @@ public class Start extends HttpServlet {
 					sis.addToPO(currentUser.getUserID(), currentUserAddress.getUserID());
 					for(CartBean c: cart.values())
 					{
+						// add visit event PURCHASE
+						now = LocalDateTime.now();
+						sis.addVisitEvent(dtf.format(now), c.getBid(), "PURCHASE");
 						sis.removeCartByCartId(c.getCartid());
 					}
 				} catch (Exception e1) {
@@ -391,6 +405,10 @@ public class Start extends HttpServlet {
 				request.setAttribute("review", bookReviews);
 				request.setAttribute("reviewAvg", ReviewUtil.calculateAvgBookRating(bookReviews));
 				
+				// add visit event VIEW
+				now = LocalDateTime.now();
+				sis.addVisitEvent(dtf.format(now), book, "VIEW");
+				
 				// If the user has signed in, then give them an option to add a review
 				if(!(this.currentUser == null)) {
 					request.setAttribute("reviewEligible", true);
@@ -406,6 +424,10 @@ public class Start extends HttpServlet {
 		{
 			try {
 				sis.addToCart(currentUser.getUserID(), addToCart);
+				
+				// add visit event CART
+				now = LocalDateTime.now();
+				sis.addVisitEvent(dtf.format(now), addToCart, "CART");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -420,6 +442,25 @@ public class Start extends HttpServlet {
 			SOAPUtils util = new SOAPUtils();
 			request.setAttribute("getProductInfo", util.getProductInfo(getProductInfo));
 			request.getRequestDispatcher(target).forward(request, response);
+		}
+		
+		else if(adminMonth != null || adminYear != null)
+		{
+			try {
+				
+				if(adminMonth.equals("all"))
+					booksSold = sis.retrieveBooksSold();
+				else
+					booksSold = sis.retrieveBooksSoldByMonth(adminMonth);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			if(booksSold != null)
+				request.getServletContext().setAttribute("booksSold", booksSold);
+			
+			request.getRequestDispatcher("AdminPage.jspx").forward(request, response);
 		}
 		
 		//Default category should be "All" on the landing page

@@ -47,43 +47,56 @@ function searchText() {
     }
 }
 
-//UC A1: Generate a report with books sold each month.
+// UC Analytics : Change selected value
 function reportBooksSold(){
-	alert('In on change function');
+	var month = document.getElementById("admin_month").value;
+	var year = document.getElementById("admin_year").value;
+	
+	if(month === "all")
+		document.getElementById("admin_month").options[0].selected = true;
+	else
+		document.getElementById("admin_month").options[parseInt(month, 10)].selected = true;
+	
+	if(year === "all")
+		document.getElementById("admin_year").options[0].selected = true;
+	else
+		document.getElementById("admin_year").options[parseInt(year, 10)].selected = true;
+		
+	document.forms["analyticsForm"].submit();
 }
 
-// UC P1: Log into user's account or create a new account
-function loginUser(address) {
-	var ok = true;
-	var user = document.getElementById("username").value;
-    var pass = document.getElementById("password").value;
-    alert(address);
-    var request = new XMLHttpRequest();
-    var data={
-        'username': user,
-        'password': pass
-    };
-    
-    /* add your code here to grab all parameters from form*/
-    request.open("POST", address, true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    alert('Hello');
+
+//UC A1: Generate a report with books sold each month.
+//function reportBooksSold(){
+//	//alert('In on change function');
+//	var month = document.getElementById("admin_month").value;
+//	var year = document.getElementById("admin_year").value;
+//	console.log(month);
+//	var request = new XMLHttpRequest();
+//    var data={
+//        'month': month,
+//        'year': year
+//    };
+//    
+//    request.open("POST", '/TabsVsSpaces/Start', true);
+//    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+//    alert('Hello');
 //    request.onreadystatechange = function() 
 //    {
 //        handler(request);
 //    };
-    alert('Hello now');
-    request.send(data);
-
-	return ok;
-}
-
-function handler(request){
-    if ((request.readyState == 4) && (request.status == 200)){
-        request.open("GET", "/TabsVsSpaces/Akshay", true);
-        request.send();
-    }
-} 
+//    alert('Hello now');
+//    request.send(data);
+//
+//	return ok;
+//	
+//}
+//
+//function handler(request){
+//    if ((request.readyState == 4) && (request.status == 200)){
+//    	alert('Success');
+//    }
+//} 
 
 function acc_form_validate() {
     var ok = true;

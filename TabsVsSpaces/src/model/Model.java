@@ -128,6 +128,16 @@ public class Model {
 		return this.soldDAO.retrieveTopBooksSold();
 	}
 	
+	public Map<String, SoldBean> retrieveBooksSoldByMonth(String month) throws Exception {
+		return this.soldDAO.retrieveBooksSoldByMonth(month);
+	}
+	
+	// VisitEvents
+	public void addVisitEvent(String day, String bid, String event) throws Exception {
+		bookDAO.addVisitEvent(day, bid, event);
+	}
+	
+	
 //	public String submitOrder(int uid, String status, ArrayList<CartBean> list) throws Exception{
 //		return orderDAO.submitOrder(uid, status, list);
 //	}
