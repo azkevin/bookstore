@@ -2,6 +2,8 @@
 
 A simple bookstore application built using Java EE, Apache Derby, Apache Tomcat, Apache Axis, and Jersey.
 
+<img src="http://i.imgur.com/bDW1yLS.jpg">
+
 ## Setup
 
 1. Install [Eclipse IDE for Java EE Developers](https://www.eclipse.org/downloads/packages/) and [Apache Tomcat 8.5](https://tomcat.apache.org/download-80.cgi) as a zip. Add the Tomcat server to the Eclipse using the New Server Wizard.
